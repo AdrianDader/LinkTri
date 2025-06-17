@@ -12,11 +12,11 @@ class RepositoryController extends Controller
 
 
     public function index(Request $request)
-{
-    $repositories = Repository::where('user_id', $request->user()->id)->get();
+    {
+        $repositories = Repository::where('user_id', $request->user()->id)->get();
 
-    return response()->json($repositories);
-}
+        return response()->json($repositories);
+    }
 
 
     public function show(string $id, Request $request)
@@ -51,20 +51,20 @@ class RepositoryController extends Controller
 
 
 
-            protected function validateTags(array $tags)
-            {
-                // Obtener todas las tags de MongoDB
-                $existingTags = Tag::pluck('name')->toArray();
+    protected function validateTags(array $tags)
+    {
+        // Obtener todas las tags de MongoDB
+        $existingTags = Tag::pluck('name')->toArray();
 
-                // Verificar si todas las tags enviadas existen en MongoDB
-                foreach ($tags as $tag) {
-                    if (!in_array($tag, $existingTags)) {
-                        return false;  // Si alguna tag no existe, devolvemos false
-                    }
-                }
-
-                return true;  // Si todas las tags son válidas, retornamos true
+        // Verificar si todas las tags enviadas existen en MongoDB
+        foreach ($tags as $tag) {
+            if (!in_array($tag, $existingTags)) {
+                return false;  // Si alguna tag no existe, devolvemos false
             }
+        }
+
+        return true;  // Si todas las tags son válidas, retornamos true
+    }
 
 
 
@@ -93,7 +93,6 @@ class RepositoryController extends Controller
             'ID del repositorio' => $repository->id,
             'URL para gestionar enlaces' => '/api/repository/' . $repository->id . '/enlaces'
         ], 201);
-        
     }
 
 
@@ -123,5 +122,4 @@ class RepositoryController extends Controller
 
         return response()->json(['message' => 'Repositorio actualizado correctamente.'], 200);
     }
-
 }
