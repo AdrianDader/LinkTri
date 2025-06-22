@@ -1,0 +1,27 @@
+:root {
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: justify;
+
+  color: #363636;
+  background-color: #FFF8E5; 
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  font-weight: 500;
+  color: #363636;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #66A21B;
+}

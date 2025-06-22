@@ -1,0 +1,30 @@
+#root {
+  max-width: 80rem;
+  margin: 0 auto;
+
+  /* text-align: center; */
+}
+
+/* NavBar */
+
+.navbar__logo{
+
+    font-size: 1.6rem;
+    font-weight: 800;
+
+}
+.navbar__wrapper {
+    /* background-color: #c8b5da; */
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between
+}
+
+.navbar__list {
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 2rem;
+    
+}

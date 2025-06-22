@@ -1,4 +1,5 @@
-import "./App.css";
+// import "./App.css";
+import "./AppLinkTri.css"
 import NavBar from "./components/shared/NavBar";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./routes/AppRouter";

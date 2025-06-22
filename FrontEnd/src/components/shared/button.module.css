@@ -1,0 +1,26 @@
+.buttonPrimary {
+  
+  background-color: #7BA844;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #363636;
+  border: none;
+  padding: 0.5rem;
+  border-radius: .25rem;
+  cursor: pointer;
+  max-width: 15rem;
+  width: 100%;
+}
+
+.buttonSecondary {
+  background-color: #363636;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #7BA844;
+  border: none;
+  padding: 0.5rem;
+  border-radius: .25rem;
+  cursor: pointer;
+  max-width: 15rem;
+  width: 100%;
+}
