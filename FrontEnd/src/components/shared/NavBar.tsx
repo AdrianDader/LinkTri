@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <div className="navbar__wrapper">
+    <div className="navbar__wrapper max-width">
       <nav className="navbar__list">
         <Link to="/" className="navbar__logo">LinkTri</Link>
         <Link to="/dashboard">Dashboard</Link>

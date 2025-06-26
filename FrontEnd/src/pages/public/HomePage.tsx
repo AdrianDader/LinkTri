@@ -4,7 +4,8 @@ export default function HomePage() {
   return (
     <>
       {/* <h1>HomePage</h1> */}
-      <section className="background"></section>
+      
+      <Hero />
       <Hero />
       <section className="height-viewport">aaaaaaa</section>
     </>

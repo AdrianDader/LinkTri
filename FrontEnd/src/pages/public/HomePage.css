@@ -1,23 +1,23 @@
 .background {
-  position: relative;
-  height: 100vh;
-  max-width: none;
-    width: 100vw;
+  height: calc(100vh - 5.3rem);               /* altura igual al viewport */
+  width: 100vw;                 /* ancho igual al viewport */
   background-image: url("./../../assets/vector_arboles2.svg");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom center;
-  background-size: cover;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: -1; 
+  display: flex;
+  align-items: center;
+  z-index: -1;                  /* solo si usas capas superpuestas */
 }
 
+
 .hero__section {
+  /* margin: 0 auto; */
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 3 columnas iguales */
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  margin: 4rem 0;
+  align-items: center;
+  margin-bottom: 10rem;
 }
 
 .hero-buttons__wrapper {
@@ -29,4 +29,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.height-viewport {
+  height: 100vh;
+}
+
+/* what is */
+
+.what-is__section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: firebrick;
+}
+
+.what-is__wrapper {
+    max-width: 80rem;
+  
 }

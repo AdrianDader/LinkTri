@@ -1,8 +1,12 @@
-#root {
+.max-width {
   max-width: 80rem;
   margin: 0 auto;
 
   /* text-align: center; */
+}
+
+.height-calc-100vh {
+    height: calc(100vh - 5.3rem);
 }
 
 /* NavBar */
