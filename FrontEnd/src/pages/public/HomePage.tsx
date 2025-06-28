@@ -3,8 +3,6 @@ import AboutMe from "./HomePageComponents/AboutMe";
 import Hero from "./HomePageComponents/Hero";
 import HowItWorks from "./HomePageComponents/HowItWorks";
 import WhatIs from "./HomePageComponents/WhatIs";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-
 
 
 export default function HomePage() {
@@ -22,9 +20,4 @@ export default function HomePage() {
   );
 }
 
-{
-  /* <section id="whatis">
-  <h2>What is it?</h2>
-  <p>Explicación aquí...</p>
-</section> */
-}
+

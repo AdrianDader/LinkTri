@@ -3,16 +3,17 @@
   height: calc(100vh - 5.3rem); /* altura igual al viewport */
 
   background-image: url("./../../assets/vector_arboles2.svg");
-  background-size: cover;
+  /* background-size: cover; */
   background-repeat: no-repeat;
   background-position: bottom center;
   display: flex;
   align-items: center;
-  z-index: -1; /* solo si usas capas superpuestas */
+  z-index: -1; 
 }
 
 .hero__section {
   /* margin: 0 auto; */
+  width: 80rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
@@ -106,8 +107,19 @@
 
 /* -----------------------  how it works ----------------------------------------- */
 
+.how-it-works__background {
+    /* height: 100vh; */
+    background-image: url(/src/assets/vector_arboles3.svg);
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    background-position: top center;
+    /* display: flex
+; */
+    align-items: center;
+    z-index: -1;
+}
 .how-it-works_section {
-  background-color: var(--text-white);
+
   padding: 10rem 0;
 }
 

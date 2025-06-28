@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/public/HomePage";
 import DashboardPage from "../pages/private/DashboardPage";
 import RegisterPage from "../pages/public/RegisterPage";
-import ScrollToHash from "../hooks/ScrollToHash";
+
 
 export default function AppRouter() {
   return (

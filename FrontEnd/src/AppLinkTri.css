@@ -10,7 +10,14 @@
 
   --font-size-h1: 3rem;
   --font-size-h3: 2rem;
+
+  /* Animación de botones*/
+
+  --btn-scale-hover: 0.95;
+  --btn-scale-active: 0.97;
 }
+
+
 
 .max-width {
   max-width: 80rem;
@@ -41,6 +48,9 @@
   align-items: center;
   gap: 2rem;
 }
+.active {
+  color: var(--text-green);
+}
 /* footer -------------------------------------------------- */
 
 .footer__section {
@@ -50,7 +60,7 @@
 .footer__wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items:baseline;
+  align-items: baseline;
   gap: 2rem;
   padding: 4rem 0;
   justify-items: end;
@@ -66,7 +76,7 @@
   color: var(--text-white);
 }
 
-.footer-icons__list{
+.footer-icons__list {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -74,11 +84,12 @@
   margin: 0;
 }
 
-.footer__desc p:last-child {
-
+.footer__desc:last-child {
   color: var(--text-green);
 }
 
 .footer__icons {
   color: var(--text-green);
 }
+
+

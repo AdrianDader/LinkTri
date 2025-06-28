@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useFetchingData } from "../../hooks/useFetchingData";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { ButtonPrimary } from "../shared/button";
+import "./../../pages/public/RegisterPage/RegisterPage.css"
 
 type RegisterUser = {
   name: string;
@@ -51,69 +54,86 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="form__wrapper">
-      <h2 className="form__title">Nuevo registro de usuario</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="label__wrapper">
-          <label htmlFor="name">
-            Nombre:
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div className="label__wrapper">
-          <label htmlFor="email">
-            Email:
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div className="label__wrapper">
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div className="label__wrapper">
-          <label htmlFor="password_confirmation">
-            Confirm password:
-            <input
-              type="password"
-              id="password_confirmation"
-              name="password_confirmation"
-              value={form.password_confirmation}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <button type="submit">Registrarse</button>
+    <section className="hero__background">
+      <section className="hero__section max-width">
+        <div className="hero__wrapper">
+          <h1>
+            <span style={{ color: "#66A21B", fontSize: "3rem" }}>Link</span>
+            <span style={{ color: "#363636", fontSize: "3rem" }}>Tri</span>
+          </h1>
+          <div className="register-form__wrapper">
+            <h2 className="register-form__title">Nuevo registro de usuario</h2>
+            <form onSubmit={handleSubmit} className="register-form">
+              <div className="form-label__wrapper">
+                <label htmlFor="name">
+                  Nombre:</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                  />
+                
+              </div>
+              <div className="form-label__wrapper">
+                <label htmlFor="email">
+                  Email:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
+                
+              </div>
+              <div className="form-label__wrapper">
+                <label htmlFor="password">
+                  Password:</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                  />
+                
+              </div>
+              <div className="form-label__wrapper">
+                <label htmlFor="password_confirmation">
+                  Confirm password:</label>
+                  <input
+                    type="password"
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    value={form.password_confirmation}
+                    onChange={handleChange}
+                  />
+                
+              </div>
+              <ButtonPrimary onClick="submit">Registrarse</ButtonPrimary>
 
-        {loading && <p>Registrando usuario...</p>}
-        {errors && <p className="error">{errors}</p>}
-      </form>
+              {loading && <p>Registrando usuario...</p>}
+              {errors && <p className="error">{errors}</p>}
+            </form>
 
-      {isSubmited && (
-        <div className="isSubmited__wrapper">
-          <h2 className="isSubmited__title">Hola {registeredName}</h2>
-          <p className="isSubmited__desc">Has sido registrado</p>
+            {isSubmited && (
+              <div className="isSubmited__wrapper">
+                <h2 className="isSubmited__title">Hola {registeredName}</h2>
+                <p className="isSubmited__desc">Has sido registrado</p>
+              </div>
+            )}
+          </div>
         </div>
-      )}
-    </div>
+        <div className="hero__wrapper hero-vector">
+          <DotLottieReact
+            src="https://lottie.host/e8a91934-3750-40d0-9ec9-3c9b027d0e6d/h9ILFIhCip.lottie"
+            loop
+            autoplay
+          />
+        </div>
+      </section>
+    </section>
   );
 }
