@@ -40,7 +40,7 @@
 .what-is__section {
   position: relative;
 
-  background-color: #363636;
+  background-color: var(--background-grey);
 }
 
 .dotted-line {
@@ -106,19 +106,75 @@
 
 /* -----------------------  how it works ----------------------------------------- */
 
-
 .how-it-works_section {
-
   background-color: var(--text-white);
   padding: 10rem 0;
-
 }
 
 .how-it-works__wrapper {
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: center;
+}
+/* .how-it-works__title {
+  font-size: var(--font-size-h3);
+  color: var(--text-green);
+  margin: 0;
+} */
 
+
+.how-it-works__title {
+  font-size: var(--font-size-h3);
+  color: var(--text-green);
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.how-it-works__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3rem;
+  width: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.how-it-works__title:hover::after {
+  width: 100%;
+}
+
+
+/* -----------------------  about me ----------------------------------------- */
+
+.about-me__section {
+  position: relative;
+
+  background-color: var(--background-grey);
+}
+
+.about-me__wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.about-me__title {
+  color: var(--text-green);
+  font-size: var(--font-size-h3);
+  margin: 0;
+}
+.about-me__desc {
+  color: var(--text-white);
+}
+
+.about-me-buttons__wrapper {
+  display: flex;
+  gap: 1rem;
 }

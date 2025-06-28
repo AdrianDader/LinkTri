@@ -1,9 +1,15 @@
-/*Colores primarios*/
 :root {
+  /*Colores primarios*/
+
   --text-white: #fff8e5;
   --text-green: #7ba844;
   --background-grey: #363636;
   --background-footer-grey: #1e1e1e;
+
+  /* Tamaño de fuente */
+
+  --font-size-h1: 3rem;
+  --font-size-h3: 2rem;
 }
 
 .max-width {
@@ -15,7 +21,7 @@
   height: calc(100vh - 5.3rem);
 }
 
-/* NavBar */
+/* NavBar ---------------------------------------------  */
 
 .navbar__logo {
   font-size: 1.6rem;
@@ -34,4 +40,45 @@
   justify-content: left;
   align-items: center;
   gap: 2rem;
+}
+/* footer -------------------------------------------------- */
+
+.footer__section {
+  background-color: var(--background-footer-grey);
+}
+
+.footer__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items:baseline;
+  gap: 2rem;
+  padding: 4rem 0;
+  justify-items: end;
+}
+
+.footer__title {
+  font-size: var(--font-size-h3);
+  margin: 0;
+  color: var(--text-green);
+}
+
+.footer__box {
+  color: var(--text-white);
+}
+
+.footer-icons__list{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin: 0;
+}
+
+.footer__desc p:last-child {
+
+  color: var(--text-green);
+}
+
+.footer__icons {
+  color: var(--text-green);
 }
