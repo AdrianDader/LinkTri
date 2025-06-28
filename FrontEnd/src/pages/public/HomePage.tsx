@@ -1,13 +1,19 @@
 import "./HomePage.css";
 import Hero from "./HomePageComponents/Hero";
+import HowItWorks from "./HomePageComponents/HowItWorks";
+import WhatIs from "./HomePageComponents/WhatIs";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
 export default function HomePage() {
   return (
     <>
       {/* <h1>HomePage</h1> */}
+
+      <Hero />
+      <WhatIs />
+      <HowItWorks />
       
-      <Hero />
-      <Hero />
-      <section className="height-viewport">aaaaaaa</section>
+      {/* <section className="height-viewport">aaaaaaa</section> */}
     </>
   );
 }

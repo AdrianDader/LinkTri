@@ -1,34 +1,37 @@
+/*Colores primarios*/
+:root {
+  --text-white: #fff8e5;
+  --text-green: #7ba844;
+  --background-grey: #363636;
+  --background-footer-grey: #1e1e1e;
+}
+
 .max-width {
   max-width: 80rem;
   margin: 0 auto;
-
-  /* text-align: center; */
 }
 
 .height-calc-100vh {
-    height: calc(100vh - 5.3rem);
+  height: calc(100vh - 5.3rem);
 }
 
 /* NavBar */
 
-.navbar__logo{
-
-    font-size: 1.6rem;
-    font-weight: 800;
-
+.navbar__logo {
+  font-size: 1.6rem;
+  font-weight: 800;
 }
 .navbar__wrapper {
-    /* background-color: #c8b5da; */
-    padding: 1rem 0;
-    display: flex;
-    justify-content: space-between
+  /* background-color: #c8b5da; */
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .navbar__list {
-    font-size: 1.1rem;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 2rem;
-    
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 2rem;
 }

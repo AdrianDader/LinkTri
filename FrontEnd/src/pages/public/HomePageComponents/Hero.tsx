@@ -2,10 +2,11 @@ import {
   ButtonPrimary,
   ButtonSecondary,
 } from "./../../../components/shared/button";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 export default function Hero() {
   return (
     <>
-      <section className="background">
+      <section className="hero__background">
         <section className="hero__section max-width">
           <div className="hero__wrapper">
             <h1>
@@ -31,7 +32,11 @@ export default function Hero() {
             </div>
           </div>
           <div className="hero__wrapper hero-vector">
-            <p>Implementar vector o SVG animado</p>
+            <DotLottieReact
+              src="https://lottie.host/e8a91934-3750-40d0-9ec9-3c9b027d0e6d/h9ILFIhCip.lottie"
+              loop
+              autoplay
+            />
           </div>
         </section>
       </section>
