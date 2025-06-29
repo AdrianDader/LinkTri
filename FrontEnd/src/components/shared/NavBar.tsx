@@ -6,9 +6,9 @@ import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 
 export default function NavBar() {
-  const { userLogged, setUserLogged } = useAuth();
+  const { userLogged, setUserLogged, logout } = useAuth();
 
-  const { logout } = useContext(AuthContext);
+  // const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -35,7 +35,9 @@ export default function NavBar() {
           {userLogged.id ? (
             <>
               <Link to="/profile">Hola {userLogged.name}!</Link>
-              <button onClick={handleLogout}>Cerrar sesión</button>
+              <a href="#" onClick={handleLogout}>
+                Cerrar sesión
+              </a>
             </>
           ) : (
             <>
