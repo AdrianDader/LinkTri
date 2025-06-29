@@ -2,29 +2,39 @@
 import { useState } from "react";
 import axios from "axios";
 
-export function useFetchingData(url: string) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+export const useFetchingData = () => {
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<any>(null);
 
-
-  const fetchData = async (body: Record<string, any>) => {
+  const fetchData = async ({
+    url,
+    method = "POST",
+    payload = null,
+    headers = {},
+  }: {
+    url: string;
+    method?: string;
+    payload?: any;
+    headers?: any;
+  }) => {
     setLoading(true);
-    setError(null);
-
     try {
-      const response = await axios.post(url, body, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await axios({
+        url,
+        method,
+        data: payload,
+        headers,
       });
       setData(response.data);
-    } catch (err: any) {
-      setError(err.message || "Error inesperado");
+      return response.data;
+    } catch (err) {
+      setError(err);
+      return null;
     } finally {
       setLoading(false);
     }
   };
 
   return { data, loading, error, fetchData };
-}
+};

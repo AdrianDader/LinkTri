@@ -1,28 +1,14 @@
-import { createContext, Dispatch, SetStateAction } from "react";
+import { createContext } from "react";
 import { TypeUserLogged } from "./AuthProvider";
 
 type AuthContextType = {
   userLogged: TypeUserLogged;
-  setUserLogged: (user: TypeUserLogged) => void;
+  setUserLogged: React.Dispatch<React.SetStateAction<TypeUserLogged>>;
   accessToken: string | null;
-  setAccessToken: (token: string | null) => void;
-  user: string | null;
-  setUser: (user: string | null) => void;
+  setAccessToken: React.Dispatch<React.SetStateAction<string | null>>;
+  // Eliminamos user y setUser que no existen ya en el provider
 };
 
-const AuthContext = createContext<AuthContextType>({
-  userLogged: {
-    id: null,
-    name: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
-  },
-  setUserLogged: () => {},
-  accessToken: null,
-  setAccessToken: () => {},
-  user: null,
-  setUser: () => {},
-});
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export default AuthContext;

@@ -10,6 +10,44 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => ['required', 'email'],
+    //         'password' => ['required'],
+    //     ]);
+
+    //     if (!Auth::attempt($credentials)) {
+    //         return response()->json([
+    //             'message' => 'Credenciales incorrectas.',
+    //         ], 401);
+    //     }
+
+    //     $user = $request->user();
+
+    //     $token = $user->createToken('API Token')->plainTextToken;
+
+    //     // return response()->json([
+    //     //     'message' => "Usuario {$user->name} logeado correctamente.",
+    //     //     'api_access' => url('/api/repository'),
+    //     //     'payload_example_newRepository' => [
+    //     //         'name' => '',
+    //     //         'description' => '',
+    //     //         'visibility' => 'private | public',
+    //     //         'shared' => 'true | false', 
+    //     //         'tags' => ['Tag1', 'Tag2', '...']
+    //     //     ],
+    //     //     'access_token' => $token,
+    //     //     'token_type' => 'Bearer',
+    //     // ]);
+    //     return response()->json([
+    //         'message' => "Usuario {$user->name} logeadoooo correctamente.",
+    //         'user' => $user->only(['id', 'name', 'email', 'role', 'created_at', 'updated_at']),
+    //         'access_token' => $token,
+    //         'token_type' => 'Bearer',
+    //     ]);
+    // }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -23,25 +61,20 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user = $request->user();
+        // ⚠️ CAMBIADO: usamos Auth::user() en lugar de $request->user()
+        $user = Auth::user();
 
         $token = $user->createToken('API Token')->plainTextToken;
 
+        // ✅ Estructura uniforme con REGISTER
         return response()->json([
-            'message' => "Usuario {$user->name} logeado correctamente.",
-            'api_access' => url('/api/repository'),
-            'payload_example_newRepository' => [
-                'name' => '',
-                'description' => '',
-                'visibility' => 'private | public',
-                'shared' => 'true | false', 
-                'tags' => ['Tag1', 'Tag2', '...']
-            ],
+            'message' => "Usuario {$user->name} logeadoaaa correctamente.",
+            'user' => $user->only(['id', 'name', 'email', 'role', 'created_at', 'updated_at']),
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
-        
     }
+
 
 
     public function register(Request $request)
@@ -57,7 +90,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']), 
+            'password' => Hash::make($validated['password']),
             'role' => 'user', // valor user por defecto
         ]);
 
@@ -76,18 +109,4 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ], 201);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
