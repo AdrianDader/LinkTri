@@ -51,6 +51,9 @@ export default function RegisterForm() {
       password: "",
       password_confirmation: "",
     });
+
+    //Todo UseNavigate para llevar a Dashboard o a otra pagina intermedia
+    
   };
 
   return (
