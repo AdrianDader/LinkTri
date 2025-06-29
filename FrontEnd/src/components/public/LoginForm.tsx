@@ -69,6 +69,7 @@ export default function LoginForm({
 
       // Guardar token en contexto
       setAccessToken(loginResponse.access_token);
+      localStorage.setItem('accessToken', loginResponse.access_token);
 
       // 2. Obtener datos usuario con token recibido
       const userResponse = await fetchData({
@@ -88,6 +89,7 @@ export default function LoginForm({
 
       // Guardar datos usuario en contexto
       setUserLogged(userResponse.user);
+      localStorage.setItem('userLogged', JSON.stringify(userResponse.user));
       console.log(userLogged)
       console.log('UserResponse:',userResponse)
       console.log('UserResponse.name:',userResponse.user.name)

@@ -59,7 +59,9 @@ export default function RegisterForm() {
 
   // ✅ Guardamos usuario y token directamente
   setUserLogged(response.user);
+  localStorage.setItem('userLogged', JSON.stringify(response.user));
   setAccessToken(response.access_token);
+  localStorage.setItem('accessToken', response.access_token);
 
   // ✅ Confirmación visual
   setIsSubmited(true);

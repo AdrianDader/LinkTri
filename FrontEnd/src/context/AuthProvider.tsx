@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import AuthContext from "./AuthContext";
 
 interface AuthProviderProps {
@@ -21,7 +21,7 @@ export type TypeUserLogged = {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   //* Guarda los datos del usuario logueado
-  const [userLogged, setUserLogged] = useState<TypeUserLogged>({
+  const [userLogged, setUserLogged] = useState<TypeUserLogged | null>({
     id: null,
     name: "",
     email: "",
@@ -32,6 +32,28 @@ export function AuthProvider({ children }: AuthProviderProps) {
     localStorage.getItem("access_token")
   );
 
+   useEffect(() => {
+    // Al cargar, lee lo que haya en localStorage
+    const token = localStorage.getItem('accessToken');
+    const user = localStorage.getItem('userLogged');
+
+    if (token) setAccessToken(token);
+    if (user) setUserLogged(JSON.parse(user));
+  }, []);
+
+
+  const logout = () => {
+  setUserLogged({
+    id: null,
+    name: "",
+    email: "",
+  });
+  setAccessToken(null);
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('userLogged');
+};
+
+
   return (
     <AuthContext.Provider
       value={{
@@ -39,6 +61,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setUserLogged,
         accessToken,
         setAccessToken,
+        logout
       }}
     >
       {children}

@@ -6,6 +6,7 @@ type AuthContextType = {
   setUserLogged: React.Dispatch<React.SetStateAction<TypeUserLogged>>;
   accessToken: string | null;
   setAccessToken: React.Dispatch<React.SetStateAction<string | null>>;
+  logout: () => void;
   // Eliminamos user y setUser que no existen ya en el provider
 };
 

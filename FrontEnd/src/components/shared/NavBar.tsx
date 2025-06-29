@@ -1,11 +1,21 @@
 //navLink detecta por defecto que el link está activo
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 //todo Revisar esto, es lo que hay que aplicar en register / login
 import { useAuth } from "../../context/useAuth";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 export default function NavBar() {
-  const { userLogged } = useAuth();
+  const { userLogged, setUserLogged } = useAuth();
 
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+
+    navigate("/");
+  }; // Redirige a home
 
   return (
     <>
@@ -25,7 +35,7 @@ export default function NavBar() {
           {userLogged.id ? (
             <>
               <Link to="/profile">Hola {userLogged.name}!</Link>
-              <Link to="/">Cerrar sesión</Link>
+              <button onClick={handleLogout}>Cerrar sesión</button>
             </>
           ) : (
             <>
