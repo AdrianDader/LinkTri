@@ -3,7 +3,7 @@
   align-items: center;
   justify-items: center;
   margin: 0;
-  height: calc(100vh - 24.375rem);
+  height: calc(100vh - 4.3994rem);
   background-image: url("./../../assets/vector_arboles2.svg");
   /* background-size: cover; */
   background-repeat: no-repeat;
@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10rem;
 }
 
 .not-found__wrapper > h1, p {

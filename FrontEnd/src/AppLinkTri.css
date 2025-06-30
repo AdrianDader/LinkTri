@@ -46,6 +46,23 @@
 
   /* -webkit-box-shadow: -1px 1px 35px -3px #7ba84465; */
 }
+
+.navbar-dashboard__section{
+  position: sticky;
+  top: 0;              
+  z-index: 1000;
+  background-color: var(--text-green);
+
+  /* -webkit-box-shadow: -1px 1px 35px -3px #7ba84465; */
+}
+
+.navbar-dashboard__section nav > * {
+  color: var(--background-footer-grey);
+
+  /* -webkit-box-shadow: -1px 1px 35px -3px #7ba84465; */
+}
+
+
 .navbar__wrapper {
 
   

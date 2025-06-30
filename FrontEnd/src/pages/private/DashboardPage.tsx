@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import "./../private/DashboardPage.css";
 import AuthContext from "./../../context/AuthContext";
+import Accordion from "../../components/private/Accordion";
+import { ButtonPrimary } from "../../components/shared/button";
 export default function DashboardPage() {
   const auth = useContext(AuthContext);
   if (!auth) {
@@ -16,6 +18,15 @@ export default function DashboardPage() {
       <section className="dashboard__section">
         <div className="dashboard-sidebar-left__wrapper">
           <h2>Repositorios</h2>
+
+          {/* //todo hacer esta logica cuando haya datos */}
+          {/* //todo Si no existen repos = aparece esta frase */}
+          {/* <p>No existen repositorios...</p> */}
+
+          <div className="dashboard-sidebar-left__box">
+            <Accordion />
+            <ButtonPrimary children={"Crear repositorio"} />
+          </div>
         </div>
         <div className="dashboard-center__wrapper">
           <h2>Repositorio seleccionado</h2>
