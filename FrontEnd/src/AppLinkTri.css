@@ -3,6 +3,7 @@
 
   --text-white: #fff8e5;
   --text-green: #7ba844;
+  --text-green-active: #557d24;
   --background-grey: #363636;
   --background-footer-grey: #1e1e1e;
 
@@ -21,6 +22,9 @@
 .max-width {
   max-width: 80rem;
   margin: 0 auto;
+
+  @media (min-width: 1024px) { }
+
 }
 
 .height-calc-100vh {
@@ -33,11 +37,24 @@
   font-size: 1.6rem;
   font-weight: 800;
 }
+
+.navbar__section{
+  position: sticky;
+  top: 0;              
+  z-index: 1000;
+  background-color: var(--text-white);
+
+  /* -webkit-box-shadow: -1px 1px 35px -3px #7ba84465; */
+}
 .navbar__wrapper {
-  /* background-color: #c8b5da; */
+
+  
+    
+  
   padding: 1rem 0;
   display: flex;
   justify-content: space-between;
+  
 }
 
 .navbar__list {

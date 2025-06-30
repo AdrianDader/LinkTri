@@ -5,15 +5,17 @@ import Footer from "./components/shared/Footer";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./routes/AppRouter";
 import { AuthProvider } from "./context/AuthProvider";
+import AppContent from "./AppContent";
 
 function App() {
   return (
     <>
       <AuthProvider>
         <BrowserRouter>
-          <NavBar />
+          <AppContent />
+          {/* <NavBar />
           <AppRouter />
-          <Footer />
+          <Footer /> */}
         </BrowserRouter>
       </AuthProvider>
     </>

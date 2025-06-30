@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 // dependency social icons
-
-import ReactDOM from "react-dom";
 import { SocialIcon } from "react-social-icons";
 import socialUrls from "./FooterSocialIcons";
 

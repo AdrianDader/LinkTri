@@ -3,24 +3,28 @@ import HomePage from "../pages/public/HomePage";
 import DashboardPage from "../pages/private/DashboardPage";
 import RegisterPage from "../pages/public/RegisterPage";
 import LoginPage from "../pages/public/LoginPage";
-
+import { useAuth } from "../context/useAuth";
+import NotFound from "../pages/shared/NotFoundPage";
 
 export default function AppRouter() {
+  const { userLogged } = useAuth();
+
   return (
     <>
       {/* Detecta enlaces dentro de la misma página para hacer scroll-smooth */}
       {/* <ScrollToHash />  */}
-        <Routes>
-          {/* PUBLIC ROUTES */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          {/* PRIVATE ROUTES */}
-          
-          <Route path="/dashboard" element={<DashboardPage />} />
+      <Routes>
+        {/* PUBLIC ROUTES */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        {/* PRIVATE ROUTES */}
+        {userLogged.id && <Route path="/dashboard" element={<DashboardPage />} />}ç
 
-        </Routes>
+        {/* Not Found */}
+        <Route path="*" element={<NotFound />} />
 
+      </Routes>
     </>
   );
 }

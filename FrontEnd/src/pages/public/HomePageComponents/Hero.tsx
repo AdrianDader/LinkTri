@@ -1,9 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import {
   ButtonPrimary,
   ButtonSecondary,
 } from "./../../../components/shared/button";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 export default function Hero() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
   return (
     <>
       <section className="hero__background">
@@ -27,8 +37,8 @@ export default function Hero() {
               odio numquam dignissimos saepe.
             </p>
             <div className="hero-buttons__wrapper">
-              <ButtonPrimary>Login</ButtonPrimary>
-              <ButtonSecondary>Crear cuenta</ButtonSecondary>
+              <ButtonPrimary onClick={handleLogin}>Login</ButtonPrimary>
+              <ButtonSecondary onClick={handleRegister}>Crear cuenta</ButtonSecondary>
             </div>
           </div>
           <div className="hero__wrapper hero-vector">

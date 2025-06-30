@@ -1,6 +1,12 @@
-import { ButtonPrimary, ButtonSecondary } from "../../../components/shared/button";
+import { useNavigate } from "react-router-dom";
+import {
+  ButtonPrimary,
+  ButtonSecondary,
+} from "../../../components/shared/button";
 
 export default function AboutMe() {
+  // const navigate = useNavigate();
+
   return (
     <section id="aboutme" className="about-me__section">
       <div className="about-me__wrapper max-width">
@@ -26,9 +32,21 @@ export default function AboutMe() {
             nam placeat ratione ipsa?
           </p>
           <div className="about-me-buttons__wrapper">
-            <ButtonPrimary>GitHub</ButtonPrimary>
-            <ButtonPrimary>LinkeId</ButtonPrimary>
+            <ButtonPrimary
+              onClick={() => {
+                window.open("https://github.com/AdrianDader/LinkTri", "_blank");
+              }}
+            >
+              Github
+            </ButtonPrimary>
 
+            <ButtonPrimary
+              onClick={() => {
+                window.open("https://www.linkedin.com/in/adriandader/", "_blank");
+              }}
+            >
+              LinkedIn
+            </ButtonPrimary>
           </div>
         </div>
       </div>

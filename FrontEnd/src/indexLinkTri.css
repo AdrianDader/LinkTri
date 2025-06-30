@@ -26,13 +26,18 @@ a {
   font-weight: 500;
   color: #363636;
   text-decoration: inherit;
+  transition: transform 0.2s ease;
 }
 a:hover {
-  color: var(--text-green);
+   transform: scale(1.05);
+   color: var(--text-green);
+  
 }
 
 a:active {
-  color: var(red);
+  transform: scale(0.97);
+  color: var(--text-green-active);
+
 }
 
 input {
