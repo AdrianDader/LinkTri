@@ -4,7 +4,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 export default function HowItWorks() {
   return (
     <>
-    <section className="how-it-works__background">
+    <section id="howitworks"className="how-it-works__background">
       <section className="how-it-works_section">
         {data.map((element) =>
           element.id % 2 === 0 ? (

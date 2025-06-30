@@ -2,7 +2,7 @@ import { ButtonPrimary, ButtonSecondary } from "../../../components/shared/butto
 
 export default function AboutMe() {
   return (
-    <section className="about-me__section">
+    <section id="aboutme" className="about-me__section">
       <div className="about-me__wrapper max-width">
         <div className="about-me__box">Lottie siluet</div>
         <div className="about-me__box">
