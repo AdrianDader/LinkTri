@@ -37,6 +37,11 @@ class Repository extends Model
         return $this->hasMany(Enlace::class);
     }
 
+    public function enlaces()
+{
+    return $this->hasMany(Enlace::class, 'repository_id');
+}
+
     public function getTagModelsAttribute()
     {
         $tagIds = $this->tags ?? [];

@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->group(function () {
             'user' => $request->user(),
         ]);
     });
+    Route::get('/repository-content', [RepositoryController::class, 'repositoryContent'])->middleware('auth:sanctum');
+
 });
 
 
