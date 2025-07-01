@@ -17,22 +17,40 @@ export default function DashboardPage() {
       {/* <h1>Dashboard</h1> */}
       <section className="dashboard__section">
         <div className="dashboard-sidebar-left__wrapper">
-          <h2>Repositorios</h2>
-
           {/* //todo hacer esta logica cuando haya datos */}
           {/* //todo Si no existen repos = aparece esta frase */}
           {/* <p>No existen repositorios...</p> */}
 
-          <div className="dashboard-sidebar-left__box">
+          <div className="dashboard-aside__box">
+            {/* //todo scroll bar */}
+            <h2>Repositorios</h2>
             <Accordion />
-            <ButtonPrimary children={"Crear repositorio"} />
           </div>
+          <ButtonPrimary children={"Crear repositorio"} />
         </div>
         <div className="dashboard-center__wrapper">
-          <h2>Repositorio seleccionado</h2>
+          <h2>Repository.name</h2>
+          <div className="dashboard-sidebar-left__box">
+            <Accordion />
+            <Accordion />
+            <Accordion />
+          </div>
         </div>
         <div className="dashboard-sidebar-right__wrapper">
-          <h2>Información</h2>
+          <div className="dashboard-aside__box">
+            <h2>Repository.name</h2>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere
+              qui ratione odio culpa nisi soluta, veritatis officiis vitae odit
+              cupiditate beatae quasi itaque quos sit quidem rerum
+              exercitationem ex est!
+            </p>
+
+          </div>
+          <div className="dashboard-sidebar-left__box-buttons">
+            <ButtonPrimary children={"Editar"} />
+            <ButtonPrimary children={"Eliminar"} />
+          </div>
         </div>
       </section>
 
