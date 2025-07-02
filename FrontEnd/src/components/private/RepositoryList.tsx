@@ -24,7 +24,7 @@ type RepositoriesResponse = {
 export default function RepositoryList() {
   const [openIndex, setOpenIndex] = useState(null);
 
-  const { accessToken } = useContext(AuthContext); // ✅ correctamente accedido
+  const { accessToken } = useContext<any>(AuthContext); // ✅ correctamente accedido
 
   const [repository, setRepository] = useState<RepositoriesResponse>({
     repositories: {},

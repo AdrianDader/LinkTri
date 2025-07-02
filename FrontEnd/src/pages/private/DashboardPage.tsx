@@ -15,7 +15,6 @@ export default function DashboardPage() {
 
   return (
     <>
-      {/* <h1>Dashboard</h1> */}
       <section className="dashboard__section">
         <div className="dashboard-sidebar-left__wrapper">
           {/* //todo hacer esta logica cuando haya datos */}
@@ -25,8 +24,10 @@ export default function DashboardPage() {
           <div className="dashboard-aside__box">
             {/* //todo scroll bar */}
             <h2>Repositorios</h2>
+            {/* //todo aplicar useMemo al repo */}
             < RepositoryList />
           </div>
+          {/* //todo añadir metodo del button -> Post('http://localhost:8000/api/repository') */}
           <ButtonPrimary children={"Crear repositorio"} />
         </div>
         <div className="dashboard-center__wrapper">
