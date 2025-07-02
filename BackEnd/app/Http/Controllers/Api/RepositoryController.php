@@ -140,7 +140,7 @@ class RepositoryController extends Controller
 
     foreach ($repositories as $repo) {
         // Obtener nombres de enlaces para este repositorio
-        $enlacesNames = $repo->enlaces->pluck('name')->toArray();
+        $enlacesNames = $repo->enlaces->toArray();
 
         $result[$repo->name] = $enlacesNames;
     }

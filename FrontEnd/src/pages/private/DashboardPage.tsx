@@ -3,6 +3,7 @@ import "./../private/DashboardPage.css";
 import AuthContext from "./../../context/AuthContext";
 import Accordion from "../../components/private/Accordion";
 import { ButtonPrimary } from "../../components/shared/button";
+import RepositoryList from "../../components/private/RepositoryList";
 export default function DashboardPage() {
   const auth = useContext(AuthContext);
   if (!auth) {
@@ -24,16 +25,14 @@ export default function DashboardPage() {
           <div className="dashboard-aside__box">
             {/* //todo scroll bar */}
             <h2>Repositorios</h2>
-            <Accordion />
+            < RepositoryList />
           </div>
           <ButtonPrimary children={"Crear repositorio"} />
         </div>
         <div className="dashboard-center__wrapper">
           <h2>Repository.name</h2>
           <div className="dashboard-sidebar-left__box">
-            <Accordion />
-            <Accordion />
-            <Accordion />
+            
           </div>
         </div>
         <div className="dashboard-sidebar-right__wrapper">
