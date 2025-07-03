@@ -126,29 +126,36 @@ class RepositoryController extends Controller
 
     // NUEVOS ENDPOINTS
 
-  public function repositoryContent(Request $request)
+public function repositoryContent(Request $request)
 {
     $userId = $request->user()->id;
 
-    // Obtener repositorios con sus enlaces usando eager loading
+    // Eager loading de 'enlaces'
     $repositories = Repository::with('enlaces')
                     ->where('user_id', $userId)
                     ->get();
 
-    // Construir el array con repositorio => [enlaces]
     $result = [];
 
     foreach ($repositories as $repo) {
-        // Obtener nombres de enlaces para este repositorio
-        $enlacesNames = $repo->enlaces->toArray();
+        // Obtener los enlaces
+        $enlaces = $repo->enlaces->toArray();
 
-        $result[$repo->name] = $enlacesNames;
+        // Convertir el modelo Repository en array y quitar 'enlaces' si viene incluido
+        $repoData = $repo->toArray();
+        unset($repoData['enlaces']);
+
+        $result[$repo->name] = [
+            'repository' => $repoData,
+            'enlaces' => $enlaces
+        ];
     }
 
     return response()->json([
         'repositories' => $result,
     ]);
 }
+
 
 
 }

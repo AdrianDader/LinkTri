@@ -47,45 +47,56 @@ export default function RepositoryList() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      {Object.entries(repository.repositories).map(
-        ([category, repos], index) => {
-          const isOpen = openIndex === index;
+   <div>
+  {Object.entries(repository.repositories).map(([category, data], index) => {
+    const isOpen = openIndex === index;
+    const { repository: repoData, enlaces } = data;
 
-          return (
-            <div key={category}>
-              <div
-                onClick={() => setOpenIndex(isOpen ? null : index)}
-                style={{ cursor: "pointer", userSelect: "none" }}
-                className="accordion-header"
-              >
-                {category}
-                <span className="accordion-icon" style={{ marginLeft: 8 }}>
-                  {isOpen ? "▼" : "▶"}
-                </span>
-              </div>
-              {isOpen && (
-                <ol className="accordion-desc" style={{ paddingLeft: 20 }}>
-                  {repos.map((repo) => (
-                    <li key={repo.id}>
-                      <a
-                        href={"#"}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          // todo añadir funcion ---------------
-                        }}
-                      >
-                        {repo.name}
-                      </a>{" "}
-                      - {repo.visibility}
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </div>
-          );
-        }
-      )}
-    </div>
+    return (
+      <div key={category}>
+        <div
+          onClick={() => setOpenIndex(isOpen ? null : index)}
+          style={{ cursor: "pointer", userSelect: "none" }}
+          className="accordion-header"
+        >
+          {category}
+          <span className="accordion-icon" style={{ marginLeft: 8 }}>
+            {isOpen ? "▼" : "▶"}
+          </span>
+        </div>
+        {isOpen && (
+          <div className="accordion-desc" style={{ paddingLeft: 20 }}>
+            {/* <p>
+              <strong>Descripción:</strong> {repoData.description}
+            </p>
+            <p>
+              <strong>Visibilidad:</strong> {repoData.visibility}
+            </p>
+            <p>
+              <strong>Etiquetas:</strong> {repoData.tags?.join(", ")}
+            </p> */}
+            <ol style={{ marginTop: 10 }}>
+              {enlaces.map((enlace) => (
+                <li key={enlace.id}>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      // TODO: función para abrir o copiar enlace
+                    }}
+                  >
+                    {enlace.name}
+                  </a>{" "}
+                  - {enlace.visibility}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
   );
 }
