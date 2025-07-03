@@ -2,7 +2,22 @@ import { useEffect, useState, useContext } from "react";
 import { useFetchingDataGetRepository } from "../../hooks/useFetchingGetRepository";
 import AuthContext from "../../context/AuthContext"; // 👈 usamos el contexto, no el Provider
 import "./Accordion.css";
-type RepositoryItem = {
+
+interface RepositoryListProps {
+  repository: RepositoriesResponse;
+  setRepository: React.Dispatch<React.SetStateAction<RepositoriesResponse>>;
+  setSelectedLinkName: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedRepoName: React.Dispatch<React.SetStateAction<string | null>>;
+  openIndex: number | null;
+  setOpenIndex: React.Dispatch<React.SetStateAction<number | null>>;
+}
+
+export type RepositoriesResponse = {
+  repositories: {
+    [category: string]: RepositoryItem[];
+  };
+};
+export type RepositoryItem = {
   id: number;
   repository_id: number;
   url: string;
@@ -15,20 +30,19 @@ type RepositoryItem = {
   updated_at: string;
 };
 
-type RepositoriesResponse = {
-  repositories: {
-    [category: string]: RepositoryItem[];
-  };
-};
-
-export default function RepositoryList() {
-  const [openIndex, setOpenIndex] = useState(null);
-
+export default function RepositoryList({
+  repository,
+  setRepository,
+  setSelectedLinkName,
+  setSelectedRepoName,
+  openIndex,
+  setOpenIndex,
+}: RepositoryListProps) {
   const { accessToken } = useContext<any>(AuthContext); // ✅ correctamente accedido
 
-  const [repository, setRepository] = useState<RepositoriesResponse>({
-    repositories: {},
-  });
+  // const [repository, setRepository] = useState<RepositoriesResponse>({
+  //   repositories: {},
+  // });
 
   const { data, loading, error, fetchData } = useFetchingDataGetRepository(
     "http://localhost:8000/api/repository-content",
@@ -40,6 +54,7 @@ export default function RepositoryList() {
 
     fetchData().then((res) => {
       if (res) setRepository(res);
+      console.log(res);
     });
   }, [accessToken]);
 
@@ -47,26 +62,27 @@ export default function RepositoryList() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-   <div>
-  {Object.entries(repository.repositories).map(([category, data], index) => {
-    const isOpen = openIndex === index;
-    const { repository: repoData, enlaces } = data;
+    <div>
+      {Object.entries(repository.repositories).map(
+        ([category, data], index) => {
+          const isOpen = openIndex === index;
+          const { repository: repoData, enlaces } = data;
 
-    return (
-      <div key={category}>
-        <div
-          onClick={() => setOpenIndex(isOpen ? null : index)}
-          style={{ cursor: "pointer", userSelect: "none" }}
-          className="accordion-header"
-        >
-          {category}
-          <span className="accordion-icon" style={{ marginLeft: 8 }}>
-            {isOpen ? "▼" : "▶"}
-          </span>
-        </div>
-        {isOpen && (
-          <div className="accordion-desc" style={{ paddingLeft: 20 }}>
-            {/* <p>
+          return (
+            <div key={category}>
+              <div
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                style={{ cursor: "pointer", userSelect: "none" }}
+                className="accordion-header"
+              >
+                {category}
+                <span className="accordion-icon" style={{ marginLeft: 8 }}>
+                  {isOpen ? "▼" : "▶"}
+                </span>
+              </div>
+              {isOpen && (
+                <div className="accordion-desc" style={{ paddingLeft: 20 }}>
+                  {/* <p>
               <strong>Descripción:</strong> {repoData.description}
             </p>
             <p>
@@ -75,28 +91,29 @@ export default function RepositoryList() {
             <p>
               <strong>Etiquetas:</strong> {repoData.tags?.join(", ")}
             </p> */}
-            <ol style={{ marginTop: 10 }}>
-              {enlaces.map((enlace) => (
-                <li key={enlace.id}>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      // TODO: función para abrir o copiar enlace
-                    }}
-                  >
-                    {enlace.name}
-                  </a>{" "}
-                  - {enlace.visibility}
-                </li>
-              ))}
-            </ol>
-          </div>
-        )}
-      </div>
-    );
-  })}
-</div>
-
+                  <ol style={{ marginTop: 10 }}>
+                    {enlaces.map((enlace) => (
+                      <li key={enlace.id}>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setSelectedLinkName(enlace.name); // ✅ seleccionamos
+                            setSelectedRepoName(category); // ✅ seleccionamos
+                          }}
+                        >
+                          {enlace.name}
+                        </a>{" "}
+                        - {enlace.visibility}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+            </div>
+          );
+        }
+      )}
+    </div>
   );
 }
