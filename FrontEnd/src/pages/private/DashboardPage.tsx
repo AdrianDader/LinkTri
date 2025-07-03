@@ -17,7 +17,7 @@ export default function DashboardPage() {
     <>
       <section className="dashboard__section">
         <div className="dashboard-sidebar-left__wrapper">
-          {/* //todo hacer esta logica cuando haya datos */}
+          {/* //todo hacer esta logica cuando haya datos_ */}
           {/* //todo Si no existen repos = aparece esta frase */}
           {/* <p>No existen repositorios...</p> */}
 
