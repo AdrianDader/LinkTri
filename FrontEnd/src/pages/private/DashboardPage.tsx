@@ -6,6 +6,8 @@ import { ButtonPrimary } from "../../components/shared/button";
 import RepositoryList, {
   RepositoriesResponse,
 } from "../../components/private/RepositoryList";
+import EnlaceList from "../../components/private/EnlaceList";
+import EnlaceListByCategory from "../../components/private/EnlaceList";
 
 export default function DashboardPage() {
   const auth = useContext(AuthContext);
@@ -76,7 +78,8 @@ export default function DashboardPage() {
               : "Selecciona un repositorio"}
           </h2>
           <div className="dashboard-center__box">
-            Aqui van los enlaces
+            {/* //todo a partir de un state"selectedRepoName",  cambiar la category por el category.name o lo que sea  */}
+            <EnlaceListByCategory category="Música" />
           </div>
 
           <div className="dashboard-sidebar-left__box"></div>
