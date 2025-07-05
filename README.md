@@ -19,7 +19,7 @@ Proyecto full-stack inspirado en Linktree, desarrollado con **React (frontend)**
 ### 2. Instalación del repositorio
 
 ```bash
-# Clonal repositorio
+# Clonar repositorio
 git clone https://github.com/AdrianDader/LinkTri.git
 
 # Frontend
