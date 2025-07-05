@@ -75,6 +75,9 @@ export default function DashboardPage() {
               ? selectedRepoName + " / " + selectedLinkName
               : "Selecciona un repositorio"}
           </h2>
+          <div className="dashboard-center__box">
+            Aqui van los enlaces
+          </div>
 
           <div className="dashboard-sidebar-left__box"></div>
         </div>
