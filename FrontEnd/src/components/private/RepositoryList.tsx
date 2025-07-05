@@ -8,15 +8,35 @@ interface RepositoryListProps {
   setRepository: React.Dispatch<React.SetStateAction<RepositoriesResponse>>;
   setSelectedLinkName: React.Dispatch<React.SetStateAction<string | null>>;
   setSelectedRepoName: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedRepoDesc: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedTags: React.Dispatch<React.SetStateAction<string[] | null>>;
   openIndex: number | null;
   setOpenIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 export type RepositoriesResponse = {
   repositories: {
-    [category: string]: RepositoryItem[];
+    [category: string]: CategoryRepository;
   };
 };
+
+export type CategoryRepository = {
+  repository: RepositoryMetadata;
+  enlaces: RepositoryItem[];
+};
+
+export type RepositoryMetadata = {
+  id: number;
+  user_id: number;
+  name: string;
+  description: string;
+  visibility: "public" | "private";
+  shared: boolean;
+  tags: string[];
+  created_at: string;
+  updated_at: string;
+};
+
 export type RepositoryItem = {
   id: number;
   repository_id: number;
@@ -37,6 +57,8 @@ export default function RepositoryList({
   setSelectedRepoName,
   openIndex,
   setOpenIndex,
+  setSelectedRepoDesc,
+  setSelectedTags,
 }: RepositoryListProps) {
   const { accessToken } = useContext<any>(AuthContext); // ✅ correctamente accedido
 
@@ -63,6 +85,11 @@ export default function RepositoryList({
 
   return (
     <div>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+      />
+
       {Object.entries(repository.repositories).map(
         ([category, data], index) => {
           const isOpen = openIndex === index;
@@ -71,43 +98,52 @@ export default function RepositoryList({
           return (
             <div key={category}>
               <div
-                onClick={() => setOpenIndex(isOpen ? null : index)}
+                onClick={() => {
+                  setOpenIndex(isOpen ? null : index); // ya existente
+                  setSelectedRepoDesc(repoData.description); // movido desde <a>
+                  setSelectedTags(repoData.tags);
+                  setSelectedRepoName(category);
+                }}
                 style={{ cursor: "pointer", userSelect: "none" }}
                 className="accordion-header"
               >
                 {category}
+
                 <span className="accordion-icon" style={{ marginLeft: 8 }}>
                   {isOpen ? "▼" : "▶"}
                 </span>
               </div>
               {isOpen && (
                 <div className="accordion-desc" style={{ paddingLeft: 20 }}>
-                  {/* <p>
-              <strong>Descripción:</strong> {repoData.description}
-            </p>
-            <p>
-              <strong>Visibilidad:</strong> {repoData.visibility}
-            </p>
-            <p>
-              <strong>Etiquetas:</strong> {repoData.tags?.join(", ")}
-            </p> */}
-                  <ol style={{ marginTop: 10 }}>
+
+                  <ul style={{ listStyle: "none", paddingLeft: "1rem" }}>
                     {enlaces.map((enlace) => (
-                      <li key={enlace.id}>
-                        <a
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setSelectedLinkName(enlace.name); // ✅ seleccionamos
-                            setSelectedRepoName(category); // ✅ seleccionamos
-                          }}
-                        >
-                          {enlace.name}
-                        </a>{" "}
-                        - {enlace.visibility}
+                      <li key={enlace.id} style={{ marginBottom: ".5rem" }}>
+                        <div style={{ display: "flex", gap: ".5rem" }}>
+                          {enlace.visibility === "private" ? (
+                            <span className="material-symbols-outlined ">
+                              lock
+                            </span>
+                          ) : (
+                            <span className="material-symbols-outlined">
+                              visibility
+                            </span>
+                          )}
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setSelectedLinkName(enlace.name); // ✅ seleccionamos
+                              setSelectedRepoName(category); // ✅ seleccionamos
+                            }}
+                          >
+                            {" "}
+                            {enlace.name}
+                          </a>
+                        </div>
                       </li>
                     ))}
-                  </ol>
+                  </ul>
                 </div>
               )}
             </div>

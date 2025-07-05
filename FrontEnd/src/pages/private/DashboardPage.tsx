@@ -7,7 +7,6 @@ import RepositoryList, {
   RepositoriesResponse,
 } from "../../components/private/RepositoryList";
 
-
 export default function DashboardPage() {
   const auth = useContext(AuthContext);
   if (!auth) {
@@ -22,27 +21,27 @@ export default function DashboardPage() {
 
   const [selectedLinkName, setSelectedLinkName] = useState<string | null>(null);
   const [selectedRepoName, setSelectedRepoName] = useState<string | null>(null);
-
+  const [selectedRepoDesc, setSelectedRepoDesc] = useState<string | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[] | null>(null);
 
   useEffect(() => {
-  const timeout = setTimeout(() => {
-    const prensaRepo = repository.repositories["Prensa"];
+    const timeout = setTimeout(() => {
+      const prensaRepo = repository.repositories["Prensa"];
 
-    if (prensaRepo && prensaRepo.enlaces && prensaRepo.enlaces.length > 0) {
-      console.log("Primer enlace:", prensaRepo.enlaces[0].name);
-      console.log("ID:", prensaRepo.enlaces[0].id);
-    } else {
-      console.log("No se encontraron enlaces en 'Prensa'.");
-    }
-  }, 1000);
+      if (prensaRepo && prensaRepo.enlaces && prensaRepo.enlaces.length > 0) {
+        console.log("Primer enlace:", prensaRepo.enlaces[0].name);
+        console.log("ID:", prensaRepo.enlaces[0].id);
+        console.log(repository.repositories["Música"].repository.description);
+        console.log(repository.repositories["Música"].repository.tags);
+      } else {
+        console.log("No se encontraron enlaces en 'Prensa'.");
+      }
+    }, 1000);
 
-  return () => clearTimeout(timeout);
-}, [repository]);
-
-
+    return () => clearTimeout(timeout);
+  }, [repository]);
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
 
   return (
     <>
@@ -61,6 +60,8 @@ export default function DashboardPage() {
               setRepository={setRepository}
               setSelectedLinkName={setSelectedLinkName}
               setSelectedRepoName={setSelectedRepoName}
+              setSelectedRepoDesc={setSelectedRepoDesc}
+              setSelectedTags={setSelectedTags}
               openIndex={openIndex}
               setOpenIndex={setOpenIndex}
             />
@@ -69,19 +70,36 @@ export default function DashboardPage() {
           <ButtonPrimary children={"Crear repositorio"} />
         </div>
         <div className="dashboard-center__wrapper">
-            <h2>{selectedLinkName  ? selectedRepoName + " / " + selectedLinkName : "Selecciona un repositorio"}</h2>
+          <h2>
+            {selectedLinkName
+              ? selectedRepoName + " / " + selectedLinkName
+              : "Selecciona un repositorio"}
+          </h2>
 
           <div className="dashboard-sidebar-left__box"></div>
         </div>
         <div className="dashboard-sidebar-right__wrapper">
           <div className="dashboard-aside__box">
-            <h2></h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere
-              qui ratione odio culpa nisi soluta, veritatis officiis vitae odit
-              cupiditate beatae quasi itaque quos sit quidem rerum
-              exercitationem ex est!
-            </p>
+            <h2>{selectedRepoName}</h2>
+            <p>{selectedRepoDesc}</p>
+            <ul className="tags__list" style={{ padding: 0 }}>
+              {selectedTags?.map((tag, index) => (
+                <li
+                  key={index}
+                  style={{
+                    color: "var(--text-white)",
+                    display: "inline-block",
+                    padding: ".2rem 1rem",
+                    borderRadius: "2rem",
+                    margin: " 0 .5rem .5rem 0",
+                    listStyle: "none",
+                    backgroundColor: "var(--text-green)",
+                  }}
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="dashboard-sidebar-left__box-buttons">
             <ButtonPrimary children={"Editar"} />
@@ -89,19 +107,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </section>
-
-      {/* <div>
-        <h2>Datos del usuario logueado:</h2>
-        <p>
-          <strong>ID:</strong> {userLogged.id ?? "No disponible"}
-        </p>
-        <p>
-          <strong>Nombre:</strong> {userLogged.name || "No disponible"}
-        </p>
-        <p>
-          <strong>Email:</strong> {userLogged.email || "No disponible"}
-        </p>
-      </div> */}
     </>
   );
 }
