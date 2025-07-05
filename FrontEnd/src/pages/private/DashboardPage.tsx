@@ -26,24 +26,25 @@ export default function DashboardPage() {
   const [selectedRepoDesc, setSelectedRepoDesc] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[] | null>(null);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      const prensaRepo = repository.repositories["Prensa"];
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     const prensaRepo = repository.repositories["Prensa"];
 
-      if (prensaRepo && prensaRepo.enlaces && prensaRepo.enlaces.length > 0) {
-        console.log("Primer enlace:", prensaRepo.enlaces[0].name);
-        console.log("ID:", prensaRepo.enlaces[0].id);
-        console.log(repository.repositories["Música"].repository.description);
-        console.log(repository.repositories["Música"].repository.tags);
-      } else {
-        console.log("No se encontraron enlaces en 'Prensa'.");
-      }
-    }, 1000);
+  //     if (prensaRepo && prensaRepo.enlaces && prensaRepo.enlaces.length > 0) {
+  //       console.log("Primer enlace:", prensaRepo.enlaces[0].name);
+  //       console.log("ID:", prensaRepo.enlaces[0].id);
+  //       console.log(repository.repositories["Música"].repository.description);
+  //       console.log(repository.repositories["Música"].repository.tags);
+  //     } else {
+  //       console.log("No se encontraron enlaces en 'Prensa'.");
+  //     }
+  //   }, 1000);
 
-    return () => clearTimeout(timeout);
-  }, [repository]);
+  //   return () => clearTimeout(timeout);
+  // }, [repository]);
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  
 
   return (
     <>
@@ -73,20 +74,20 @@ export default function DashboardPage() {
         </div>
         <div className="dashboard-center__wrapper">
           <h2>
-            {selectedLinkName
-              ? selectedRepoName + " / " + selectedLinkName
+            {selectedRepoName
+              ? selectedRepoName
               : "Selecciona un repositorio"}
           </h2>
           <div className="dashboard-center__box">
             {/* //todo a partir de un state"selectedRepoName",  cambiar la category por el category.name o lo que sea  */}
-            <EnlaceListByCategory category="Música" />
+            <EnlaceListByCategory category={selectedRepoName} />
           </div>
 
           <div className="dashboard-sidebar-left__box"></div>
         </div>
         <div className="dashboard-sidebar-right__wrapper">
           <div className="dashboard-aside__box">
-            <h2>{selectedRepoName}</h2>
+            <h2>Detalles</h2>
             <p>{selectedRepoDesc}</p>
             <ul className="tags__list" style={{ padding: 0 }}>
               {selectedTags?.map((tag, index) => (

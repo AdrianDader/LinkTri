@@ -85,17 +85,10 @@ export default function RepositoryList({
                               visibility
                             </span>
                           )}
-                          <a
-                            href="#"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              setSelectedLinkName(enlace.name); // ✅ seleccionamos
-                              setSelectedRepoName(category); // ✅ seleccionamos
-                            }}
-                          >
+                          
                             {" "}
                             {enlace.name}
-                          </a>
+
                         </div>
                       </li>
                     ))}
