@@ -4,8 +4,6 @@ import AuthContext from "../../context/AuthContext"; // 👈 usamos el contexto,
 import "./Accordion.css";
 import { RepositoryListProps } from "./typesList";
 
-
-
 export default function RepositoryList({
   repository,
   setRepository,
@@ -65,13 +63,19 @@ export default function RepositoryList({
               >
                 {category}
 
-                <span className="accordion-icon" style={{ marginLeft: 8 }}>
-                  {isOpen ? "▼" : "▶"}
+                <span
+                  className="material-symbols-outlined"
+                  style={{
+                    display: "inline-block",
+                    transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
+                    transition: "transform 0.2s ease",
+                  }}
+                >
+                  chevron_forward
                 </span>
               </div>
               {isOpen && (
                 <div className="accordion-desc" style={{ paddingLeft: 20 }}>
-
                   <ul style={{ listStyle: "none", paddingLeft: "1rem" }}>
                     {enlaces.map((enlace) => (
                       <li key={enlace.id} style={{ marginBottom: ".5rem" }}>
@@ -84,11 +88,8 @@ export default function RepositoryList({
                             <span className="material-symbols-outlined">
                               visibility
                             </span>
-                          )}
-                          
-                            {" "}
-                            {enlace.name}
-
+                          )}{" "}
+                          {enlace.name}
                         </div>
                       </li>
                     ))}

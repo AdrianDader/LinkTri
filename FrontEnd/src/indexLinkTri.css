@@ -40,7 +40,7 @@ a:active {
 
 }
 
-input {
+input, textarea, select {
   border: solid 1px var(--text-green);
   background-color: var(--text-white);
   border-radius: 0.3rem;

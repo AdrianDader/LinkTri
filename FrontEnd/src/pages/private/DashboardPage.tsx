@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./../private/DashboardPage.css";
 import AuthContext from "./../../context/AuthContext";
 import Accordion from "../../components/private/Accordion";
@@ -8,6 +8,7 @@ import RepositoryList, {
 } from "../../components/private/RepositoryList";
 import EnlaceList from "../../components/private/EnlaceList";
 import EnlaceListByCategory from "../../components/private/EnlaceList";
+import CreateRepo from "../../components/private/RepositoryCRUD";
 
 export default function DashboardPage() {
   const auth = useContext(AuthContext);
@@ -25,26 +26,16 @@ export default function DashboardPage() {
   const [selectedRepoName, setSelectedRepoName] = useState<string | null>(null);
   const [selectedRepoDesc, setSelectedRepoDesc] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[] | null>(null);
+  const [createRepoButton, setCreateRepoButton] = useState<boolean | null>(
+    null
+  );
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     const prensaRepo = repository.repositories["Prensa"];
-
-  //     if (prensaRepo && prensaRepo.enlaces && prensaRepo.enlaces.length > 0) {
-  //       console.log("Primer enlace:", prensaRepo.enlaces[0].name);
-  //       console.log("ID:", prensaRepo.enlaces[0].id);
-  //       console.log(repository.repositories["Música"].repository.description);
-  //       console.log(repository.repositories["Música"].repository.tags);
-  //     } else {
-  //       console.log("No se encontraron enlaces en 'Prensa'.");
-  //     }
-  //   }, 1000);
-
-  //   return () => clearTimeout(timeout);
-  // }, [repository]);
+  const handlerCreateRepo = (e: React.ChangeEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setCreateRepoButton(true);
+  };
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  
 
   return (
     <>
@@ -69,17 +60,16 @@ export default function DashboardPage() {
               setOpenIndex={setOpenIndex}
             />
           </div>
-          {/* //todo añadir metodo del button -> Post('http://localhost:8000/api/repository') */}
-          <ButtonPrimary children={"Crear repositorio"} />
+          <ButtonPrimary
+            onClick={handlerCreateRepo}
+            children={"Crear repositorio"}
+          />
         </div>
         <div className="dashboard-center__wrapper">
           <h2>
-            {selectedRepoName
-              ? selectedRepoName
-              : "Selecciona un repositorio"}
+            {selectedRepoName ? selectedRepoName : "Selecciona un repositorio"}
           </h2>
           <div className="dashboard-center__box">
-            {/* //todo a partir de un state"selectedRepoName",  cambiar la category por el category.name o lo que sea  */}
             <EnlaceListByCategory category={selectedRepoName} />
           </div>
 
@@ -114,6 +104,8 @@ export default function DashboardPage() {
           </div>
         </div>
       </section>
+       {createRepoButton == true && <CreateRepo onCancel={() => setCreateRepoButton(false)} />}
+
     </>
   );
 }

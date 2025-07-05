@@ -59,7 +59,11 @@ export default function EnlaceListByCategory({ category }: Props) {
               style={{ cursor: "pointer", display: "flex", gap: "0.5rem" }}
             >
               {copiedId === enlace.id && (
-                <p style={{ backgroundColor: "var(--text-green)", color: "var(--text-white)", padding: "0 1rem", borderRadius:"2rem" }}>Copiado</p>
+                <p style={{
+                  backgroundColor: "var(--text-green)",
+                  color: "var(--text-white)",
+                  padding: "0 1rem",
+                  borderRadius:"2rem" }}>Copiado</p>
               )}
               <span
                 className="material-symbols-outlined"
