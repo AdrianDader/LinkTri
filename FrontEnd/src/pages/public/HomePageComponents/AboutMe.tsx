@@ -14,24 +14,13 @@ export default function AboutMe() {
         <div className="about-me__box">
           <h3 className="about-me__title">Adrian Dader Laguna</h3>
           <p className="about-me__desc">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit
-            ducimus sint libero? Magni distinctio nam non veritatis debitis
-            earum exercitationem vitae dolorum illum. Aspernatur natus incidunt
-            nam placeat ratione ipsa?
+            Profesional multidisciplinar radicado en Oviedo, Asturias, con una sólida trayectoria como Digital Designer, experto en UX/UI, motion graphics, modelado 3D, realización audiovisual, y apasionado guitarrista. Además, es Instructor de Esgrima Histórica (HEMA) en la Escuela Gaudiosa de Esgrima Histórica.
           </p>
-          <p className="about-me__desc">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit
-            ducimus sint libero? Magni distinctio nam non veritatis debitis
-            earum exercitationem vitae dolorum illum. Aspernatur natus incidunt
-            nam placeat ratione ipsa?
+          <p className="about-me__desc" style={{marginTop: "1rem"}}>
+          Con formación tanto en diseño gráfico y tecnologías digitales como en artes marciales históricas, Adrián integra la innovación tecnológica con el rigor académico, aportando una visión única que combina cultura, deporte y estética visual 
           </p>
-          <p className="about-me__desc">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit
-            ducimus sint libero? Magni distinctio nam non veritatis debitis
-            earum exercitationem vitae dolorum illum. Aspernatur natus incidunt
-            nam placeat ratione ipsa?
-          </p>
-          <div className="about-me-buttons__wrapper">
+          
+          <div className="about-me-buttons__wrapper" style={{marginTop:"1rem"}}>
             <ButtonPrimary
               onClick={() => {
                 window.open("https://github.com/AdrianDader/LinkTri", "_blank");

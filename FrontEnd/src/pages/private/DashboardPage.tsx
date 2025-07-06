@@ -9,6 +9,9 @@ import RepositoryList, {
 import EnlaceList from "../../components/private/EnlaceList";
 import EnlaceListByCategory from "../../components/private/EnlaceList";
 import CreateRepo from "../../components/private/RepositoryCRUD";
+import UpdateRepo from "../../components/private/UpdateRepo";
+import UpdateRepoSelector from "../../components/private/UpdateRepo";
+import DeleteRepoSelector from "../../components/private/DeleteRepoSelector";
 
 export default function DashboardPage() {
   const auth = useContext(AuthContext);
@@ -29,10 +32,20 @@ export default function DashboardPage() {
   const [createRepoButton, setCreateRepoButton] = useState<boolean | null>(
     null
   );
+  const [showUpdate, setShowUpdate] = useState<boolean | null>(null);
+  const [showDelete, setShowDelete] = useState<boolean | null>(null);
 
   const handlerCreateRepo = (e: React.ChangeEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setCreateRepoButton(true);
+  };
+  const handlerEditRepo = (e: React.ChangeEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setShowUpdate(true);
+  };
+  const handlerDeleteRepo = (e: React.ChangeEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setShowDelete(true);
   };
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -70,27 +83,17 @@ export default function DashboardPage() {
           >
             <ButtonPrimary
               onClick={handlerCreateRepo}
-              children={
-                <span className="material-symbols-outlined">
-                  add
-                </span>
-              }
+              children={<span className="material-symbols-outlined">add</span>}
             />
-            
+
             <ButtonPrimary
-              onClick={handlerCreateRepo}
-              children={
-                <span className="material-symbols-outlined">
-                  edit
-                </span>
-              }
+              onClick={handlerEditRepo}
+              children={<span className="material-symbols-outlined">edit</span>}
             />
             <ButtonSecondary
-              onClick={handlerCreateRepo}
+              onClick={handlerDeleteRepo}
               children={
-                <span className="material-symbols-outlined">
-                  delete
-                </span>
+                <span className="material-symbols-outlined">delete</span>
               }
             />
           </div>
@@ -142,6 +145,19 @@ export default function DashboardPage() {
       {createRepoButton == true && (
         <CreateRepo onCancel={() => setCreateRepoButton(false)} />
       )}
+
+      <div>
+
+        {showUpdate && (
+          <UpdateRepoSelector onCancel={() => setShowUpdate(false)} />
+        )}
+      </div>
+      <div>
+
+        {showDelete && (
+          <DeleteRepoSelector onCancel={() => setShowDelete(false)} />
+        )}
+      </div>
     </>
   );
 }
