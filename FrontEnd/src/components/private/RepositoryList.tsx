@@ -38,7 +38,10 @@ export default function RepositoryList({
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div style={{
+      maxHeight: "38.875rem",
+      overflowY: "auto" }}
+      className="custom-scroll">
       <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
         rel="stylesheet"
@@ -58,7 +61,10 @@ export default function RepositoryList({
                   setSelectedTags(repoData.tags);
                   setSelectedRepoName(category);
                 }}
-                style={{ cursor: "pointer", userSelect: "none" }}
+                style={{
+                  cursor: "pointer",
+                  userSelect: "none",
+                }}
                 className="accordion-header"
               >
                 {category}

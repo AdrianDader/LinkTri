@@ -49,3 +49,23 @@ input, textarea, select {
   font-weight: 600;
   color: var(--text-green);
 }
+
+
+.custom-scroll {
+
+  padding-right: 12px; /* espacio entre contenido y scrollbar */
+}
+
+
+.custom-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #00000000;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color:var(--text-green);
+  border-radius: 10px;
+}

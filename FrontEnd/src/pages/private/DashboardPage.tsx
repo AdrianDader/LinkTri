@@ -78,25 +78,31 @@ export default function DashboardPage() {
         <div className="dashboard-sidebar-right__wrapper">
           <div className="dashboard-aside__box">
             <h2>Detalles</h2>
-            <p>{selectedRepoDesc}</p>
-            <ul className="tags__list" style={{ padding: 0 }}>
-              {selectedTags?.map((tag, index) => (
-                <li
-                  key={index}
-                  style={{
-                    color: "var(--text-white)",
-                    display: "inline-block",
-                    padding: ".2rem 1rem",
-                    borderRadius: "2rem",
-                    margin: " 0 .5rem .5rem 0",
-                    listStyle: "none",
-                    backgroundColor: "var(--text-green)",
-                  }}
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
+            <div className="details__wrapper"   className="custom-scroll"
+              style={{
+                maxHeight: "36rem",
+                overflowY: "auto",
+              }}>
+              <p>{selectedRepoDesc}</p>
+              <ul className="tags__list" style={{ padding: 0 }}>
+                {selectedTags?.map((tag, index) => (
+                  <li
+                    key={index}
+                    style={{
+                      color: "var(--text-white)",
+                      display: "inline-block",
+                      padding: ".2rem 1rem",
+                      borderRadius: "2rem",
+                      margin: " 0 .5rem .5rem 0",
+                      listStyle: "none",
+                      backgroundColor: "var(--text-green)",
+                    }}
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div className="dashboard-sidebar-left__box-buttons">
             <ButtonPrimary children={"Editar"} />
@@ -104,8 +110,9 @@ export default function DashboardPage() {
           </div>
         </div>
       </section>
-       {createRepoButton == true && <CreateRepo onCancel={() => setCreateRepoButton(false)} />}
-
+      {createRepoButton == true && (
+        <CreateRepo onCancel={() => setCreateRepoButton(false)} />
+      )}
     </>
   );
 }

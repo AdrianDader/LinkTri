@@ -40,7 +40,9 @@ export default function EnlaceListByCategory({ category }: Props) {
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
-    <div>
+    <div className="custom-scroll" style={{
+      maxHeight: "18.875rem",
+      overflowY: "auto" }}>
       {enlaces.map((enlace) => (
         <div key={enlace.id} onClick={() => toggleAccordion(enlace.id)}>
           <div
