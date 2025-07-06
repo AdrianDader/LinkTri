@@ -39,7 +39,7 @@ export default function RepositoryList({
 
   return (
     <div style={{
-      maxHeight: "38.875rem",
+      maxHeight: "40rem",
       overflowY: "auto" }}
       className="custom-scroll">
       <link

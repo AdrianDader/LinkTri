@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./../private/DashboardPage.css";
 import AuthContext from "./../../context/AuthContext";
 import Accordion from "../../components/private/Accordion";
-import { ButtonPrimary } from "../../components/shared/button";
+import { ButtonPrimary, ButtonSecondary } from "../../components/shared/button";
 import RepositoryList, {
   RepositoriesResponse,
 } from "../../components/private/RepositoryList";
@@ -39,6 +39,10 @@ export default function DashboardPage() {
 
   return (
     <>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+      />
       <section className="dashboard__section">
         <div className="dashboard-sidebar-left__wrapper">
           {/* //todo hacer esta logica cuando haya datos_ */}
@@ -60,10 +64,36 @@ export default function DashboardPage() {
               setOpenIndex={setOpenIndex}
             />
           </div>
-          <ButtonPrimary
-            onClick={handlerCreateRepo}
-            children={"Crear repositorio"}
-          />
+          <div
+            className="dashboard-sidebar-left__buttons"
+            style={{ display: "flex", flexDirection: "row", gap: "1rem" }}
+          >
+            <ButtonPrimary
+              onClick={handlerCreateRepo}
+              children={
+                <span className="material-symbols-outlined">
+                  add
+                </span>
+              }
+            />
+            
+            <ButtonPrimary
+              onClick={handlerCreateRepo}
+              children={
+                <span className="material-symbols-outlined">
+                  edit
+                </span>
+              }
+            />
+            <ButtonSecondary
+              onClick={handlerCreateRepo}
+              children={
+                <span className="material-symbols-outlined">
+                  delete
+                </span>
+              }
+            />
+          </div>
         </div>
         <div className="dashboard-center__wrapper">
           <h2>
@@ -78,11 +108,13 @@ export default function DashboardPage() {
         <div className="dashboard-sidebar-right__wrapper">
           <div className="dashboard-aside__box">
             <h2>Detalles</h2>
-            <div className="details__wrapper"   className="custom-scroll"
+            <div
+              className="custom-scroll"
               style={{
-                maxHeight: "36rem",
+                maxHeight: "44rem",
                 overflowY: "auto",
-              }}>
+              }}
+            >
               <p>{selectedRepoDesc}</p>
               <ul className="tags__list" style={{ padding: 0 }}>
                 {selectedTags?.map((tag, index) => (
@@ -104,10 +136,7 @@ export default function DashboardPage() {
               </ul>
             </div>
           </div>
-          <div className="dashboard-sidebar-left__box-buttons">
-            <ButtonPrimary children={"Editar"} />
-            <ButtonPrimary children={"Eliminar"} />
-          </div>
+          {/* <div className="dashboard-sidebar-left__box-buttons"></div> */}
         </div>
       </section>
       {createRepoButton == true && (
