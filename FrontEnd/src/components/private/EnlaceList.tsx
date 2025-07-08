@@ -45,7 +45,7 @@ export default function EnlaceListByCategory({ category, onCreateEnlace }: Props
       <div
         className="custom-scroll"
         style={{
-          maxHeight: "18.875rem",
+          maxHeight: "44rem",
           overflowY: "auto",
         }}
       >
