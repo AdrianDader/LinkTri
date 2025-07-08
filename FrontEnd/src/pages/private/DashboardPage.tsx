@@ -1,17 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./../private/DashboardPage.css";
 import AuthContext from "./../../context/AuthContext";
-import Accordion from "../../components/private/Accordion";
 import { ButtonPrimary, ButtonSecondary } from "../../components/shared/button";
-import RepositoryList, {
-  RepositoriesResponse,
-} from "../../components/private/RepositoryList";
-import EnlaceList from "../../components/private/EnlaceList";
+import RepositoryList from "../../components/private/RepositoryList";
+import { RepositoriesResponse } from "../../components/private/typesList";
 import EnlaceListByCategory from "../../components/private/EnlaceList";
 import CreateRepo from "../../components/private/RepositoryCRUD";
-import UpdateRepo from "../../components/private/UpdateRepo";
 import UpdateRepoSelector from "../../components/private/UpdateRepo";
 import DeleteRepoSelector from "../../components/private/DeleteRepoSelector";
+import CreateEnlace from "../../components/private/crud_enlaces/createEnlace";
 
 export default function DashboardPage() {
   const auth = useContext(AuthContext);
@@ -29,12 +26,26 @@ export default function DashboardPage() {
   const [selectedRepoName, setSelectedRepoName] = useState<string | null>(null);
   const [selectedRepoDesc, setSelectedRepoDesc] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[] | null>(null);
+  const [selectedRepoId, setSelectedRepoId] = useState<number | null>(null);
+
+  //*CRUD REPOSITORY ---------------------
   const [createRepoButton, setCreateRepoButton] = useState<boolean | null>(
     null
   );
   const [showUpdate, setShowUpdate] = useState<boolean | null>(null);
   const [showDelete, setShowDelete] = useState<boolean | null>(null);
+  //*CRUD ENLACES --------------------------
+  const [showCreateEnlaces, setShowCreateEnlaces] = useState<boolean | null>(
+    null
+  );
+  const [showUpdateEnlaces, setShowUpdateEnlaces] = useState<boolean | null>(
+    null
+  );
+  const [showDeleteEnlaces, setShowDeleteEnlaces] = useState<boolean | null>(
+    null
+  );
 
+  //*CRUD REPOSITORY HANDLERS ---------------------
   const handlerCreateRepo = (e: React.ChangeEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setCreateRepoButton(true);
@@ -47,6 +58,10 @@ export default function DashboardPage() {
     e.preventDefault();
     setShowDelete(true);
   };
+  //*CRUD ENLACES HANDLERS ---------------------
+  const handlerCreateEnlace = () => {
+    setShowCreateEnlaces(true);
+  };
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -57,6 +72,7 @@ export default function DashboardPage() {
         rel="stylesheet"
       />
       <section className="dashboard__section">
+        {/* //* SIDEBAR LEFT ------------------------------------ */}
         <div className="dashboard-sidebar-left__wrapper">
           {/* //todo hacer esta logica cuando haya datos_ */}
           {/* //todo Si no existen repos = aparece esta frase */}
@@ -75,6 +91,7 @@ export default function DashboardPage() {
               setSelectedTags={setSelectedTags}
               openIndex={openIndex}
               setOpenIndex={setOpenIndex}
+              setSelectedRepoId={setSelectedRepoId} 
             />
           </div>
           <div
@@ -98,16 +115,19 @@ export default function DashboardPage() {
             />
           </div>
         </div>
+        {/* //*  DASHBOARD CENTER -------------------------------------- */}
         <div className="dashboard-center__wrapper">
           <h2>
             {selectedRepoName ? selectedRepoName : "Selecciona un repositorio"}
           </h2>
           <div className="dashboard-center__box">
-            <EnlaceListByCategory category={selectedRepoName} />
+            <EnlaceListByCategory
+              category={selectedRepoName}
+              onCreateEnlace={handlerCreateEnlace}
+            />
           </div>
-
-          <div className="dashboard-sidebar-left__box"></div>
         </div>
+        {/* //* SIDEBAR RIGHT ------------------------------------------ */}
         <div className="dashboard-sidebar-right__wrapper">
           <div className="dashboard-aside__box">
             <h2>Detalles</h2>
@@ -142,22 +162,29 @@ export default function DashboardPage() {
           {/* <div className="dashboard-sidebar-left__box-buttons"></div> */}
         </div>
       </section>
+
+      {/* //* CRUD REPOSITORY COMPONENTS ------------------------------ */}
       {createRepoButton == true && (
         <CreateRepo onCancel={() => setCreateRepoButton(false)} />
       )}
 
       <div>
-
         {showUpdate && (
           <UpdateRepoSelector onCancel={() => setShowUpdate(false)} />
         )}
       </div>
       <div>
-
         {showDelete && (
           <DeleteRepoSelector onCancel={() => setShowDelete(false)} />
         )}
       </div>
+      {/* //* CRUD ENLACE COMPONENTS ------------------------------ */}
+      {showCreateEnlaces && (
+        <CreateEnlace
+          onCancel={() => setShowCreateEnlaces(false)}
+          repoId={selectedRepoId}
+        />
+      )}
     </>
   );
 }

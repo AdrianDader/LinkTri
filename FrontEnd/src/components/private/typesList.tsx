@@ -7,6 +7,7 @@ export interface RepositoryListProps {
   setSelectedTags: React.Dispatch<React.SetStateAction<string[] | null>>;
   openIndex: number | null;
   setOpenIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  setSelectedRepoId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 export type RepositoriesResponse = {

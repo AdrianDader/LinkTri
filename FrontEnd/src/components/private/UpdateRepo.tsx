@@ -17,7 +17,9 @@ interface UpdateRepoSelectorProps {
   onCancel: () => void;
 }
 
+//componente que actualiza los repositorios
 export default function UpdateRepoSelector({ onCancel }: UpdateRepoSelectorProps) {
+  // declarar variables desde AuthContext, useState, fetching y seteo de formulario
   const { accessToken } = useContext<any>(AuthContext);
   const { loading, error, fetchData } = useFetchingData();
 
@@ -67,6 +69,7 @@ export default function UpdateRepoSelector({ onCancel }: UpdateRepoSelectorProps
     }
   }, [selectedRepoId]);
 
+  // metodo que captura el estado de los imput / textarea / select
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -77,6 +80,7 @@ export default function UpdateRepoSelector({ onCancel }: UpdateRepoSelectorProps
     }));
   };
 
+  // metodo que añade las tags seleccionadas al array de tags
   const handleTagCheckbox = (tag: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -105,7 +109,7 @@ export default function UpdateRepoSelector({ onCancel }: UpdateRepoSelectorProps
       },
     });
 
-    // Opcional: resetear todo
+    // resetear todo
     setSelectedRepoId(null);
     setFormData({
       name: "",

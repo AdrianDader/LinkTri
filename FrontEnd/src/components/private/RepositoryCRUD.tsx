@@ -7,7 +7,11 @@ import { ButtonPrimary, ButtonSecondary } from "../shared/button";
 interface CreateRepoProps {
   onCancel: () => void;
 }
+
+//función formulario para crear repositorios
 export default function CreateRepo({ onCancel }: CreateRepoProps) {
+  
+  // declarar variables desde AuthContext y formData. inicializarlo vacio.
   const { accessToken } = useContext<any>(AuthContext);
   const { loading, error, fetchData } = useFetchingData();
 
@@ -21,14 +25,13 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [tagSearch, setTagSearch] = useState("");
 
+  //metodo para recargar la pagina
   const RefreshPage = () => {
     window.location.reload();
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+  // metodo para validaciones y para manejar los datos del formulario
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -37,12 +40,20 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
     }));
   };
 
+  // metodo que añade tags al array
   const handleTagCheckbox = (tag: string) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
+  // metodo para enviar el formulario que:
+  // añade los datos a payload -> cuerpo de la petición
+  // hace la peticion post
+  // setea el formulario a vacio
+  // setea las tags
+  // setea el buscador de tags
+  //recarga la pagina
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 

@@ -13,7 +13,8 @@ export default function RepositoryList({
   setOpenIndex,
   setSelectedRepoDesc,
   setSelectedTags,
-}: RepositoryListProps) {
+  setSelectedRepoId, // ← nuevo prop
+}: RepositoryListProps & { setSelectedRepoId: (id: number) => void })  {
   const { accessToken } = useContext<any>(AuthContext); // ✅ correctamente accedido
 
   // const [repository, setRepository] = useState<RepositoriesResponse>({
@@ -60,6 +61,7 @@ export default function RepositoryList({
                   setSelectedRepoDesc(repoData.description); // movido desde <a>
                   setSelectedTags(repoData.tags);
                   setSelectedRepoName(category);
+                  setSelectedRepoId(repoData.id); // 👈 asigna el ID
                 }}
                 style={{
                   cursor: "pointer",
