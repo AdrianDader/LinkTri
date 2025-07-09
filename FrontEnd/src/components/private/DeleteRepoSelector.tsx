@@ -16,7 +16,9 @@ interface DeleteRepoSelectorProps {
   onCancel: () => void;
 }
 
-export default function DeleteRepoSelector({ onCancel }: DeleteRepoSelectorProps) {
+export default function DeleteRepoSelector({
+  onCancel,
+}: DeleteRepoSelectorProps) {
   const { accessToken } = useContext<any>(AuthContext);
   const { loading, error, fetchData } = useFetchingData();
 
@@ -72,7 +74,10 @@ export default function DeleteRepoSelector({ onCancel }: DeleteRepoSelectorProps
   return (
     <section className="create-repo__section">
       <div className="create-repo__wrapper">
-        <form className="create-repo__form" onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="create-repo__form"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <h2 style={{ margin: 0 }}>Eliminar Repositorio</h2>
 
           <label>
@@ -82,7 +87,9 @@ export default function DeleteRepoSelector({ onCancel }: DeleteRepoSelectorProps
               onChange={(e) => setSelectedRepoId(Number(e.target.value))}
               required
             >
-              <option value="" disabled>-- Selecciona --</option>
+              <option value="" disabled>
+                -- Selecciona --
+              </option>
               {repos.map((repo) => (
                 <option key={repo.id} value={repo.id}>
                   {repo.name}
@@ -93,16 +100,44 @@ export default function DeleteRepoSelector({ onCancel }: DeleteRepoSelectorProps
 
           {selectedRepo && (
             <div style={{ marginTop: "1rem" }}>
-              <p><strong>Nombre:</strong> {selectedRepo.name}</p>
-              <p><strong>Descripción:</strong> {selectedRepo.description}</p>
-              <p><strong>Visibilidad:</strong> {selectedRepo.visibility}</p>
-              <p><strong>Compartido:</strong> {selectedRepo.shared ? "Sí" : "No"}</p>
-              <p><strong>Tags:</strong> {selectedRepo.tags.join(", ") || "Ninguna"}</p>
+              <p>
+                <strong>Nombre:</strong> {selectedRepo.name}
+              </p>
+              <p
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 8,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                <strong>Descripción:</strong> {selectedRepo.description}
+              </p>
 
-              <ButtonPrimary onClick={handleDelete}>
-                {loading ? "Eliminando..." : "Eliminar Repositorio"}
-              </ButtonPrimary>
-              <ButtonSecondary onClick={onCancel}>Cancelar</ButtonSecondary>
+              <p>
+                <strong>Visibilidad:</strong> {selectedRepo.visibility}
+              </p>
+              <p>
+                <strong>Compartido:</strong> {selectedRepo.shared ? "Sí" : "No"}
+              </p>
+              <p>
+                <strong>Tags:</strong>{" "}
+                {selectedRepo.tags.join(", ") || "Ninguna"}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                  marginTop: "1rem",
+                }}
+              >
+                <ButtonPrimary onClick={handleDelete}>
+                  {loading ? "Eliminando..." : "Eliminar Repositorio"}
+                </ButtonPrimary>
+                <ButtonSecondary onClick={onCancel}>Cancelar</ButtonSecondary>
+              </div>
             </div>
           )}
 

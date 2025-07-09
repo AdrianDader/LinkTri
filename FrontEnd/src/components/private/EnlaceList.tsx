@@ -8,9 +8,28 @@ interface Props {
   category: string | null;
   // createEnlace: boolean | null;
   onCreateEnlace: () => void;
+  onEditEnlace: (enlace: {
+    id: number;
+    url: string;
+    name: string;
+    visibility: string;
+    shared: boolean;
+  }) => void;
+  onDeleteEnlace: (enlace: {
+    id: number;
+    url: string;
+    name: string;
+    visibility: string;
+    shared: boolean;
+  }) => void;
 }
 
-export default function EnlaceListByCategory({ category, onCreateEnlace }: Props) {
+export default function EnlaceListByCategory({
+  category,
+  onCreateEnlace,
+  onEditEnlace,
+  onDeleteEnlace,
+}: Props) {
   const { accessToken } = useContext<any>(AuthContext);
   const { data, loading, error, fetchData } = useFetchingDataGetRepository(
     "http://localhost:8000/api/repository-content",
@@ -34,7 +53,6 @@ export default function EnlaceListByCategory({ category, onCreateEnlace }: Props
   const toggleAccordion = (id: number) => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
-
 
   return (
     <>
@@ -100,7 +118,13 @@ export default function EnlaceListByCategory({ category, onCreateEnlace }: Props
                   className="material-symbols-outlined"
                   onClick={(event) => {
                     event.stopPropagation();
-                    //todo añadir funcion para editar
+                    onEditEnlace({
+                      id: enlace.id,
+                      url: enlace.url,
+                      name: enlace.name,
+                      visibility: enlace.visibility,
+                      shared: enlace.shared,
+                    });
                   }}
                 >
                   <a>edit</a>
@@ -109,11 +133,18 @@ export default function EnlaceListByCategory({ category, onCreateEnlace }: Props
                   className="material-symbols-outlined"
                   onClick={(event) => {
                     event.stopPropagation();
-                    //todo añadir funcion para borrar
+                    onDeleteEnlace({
+                      id: enlace.id,
+                      url: enlace.url,
+                      name: enlace.name,
+                      visibility: enlace.visibility,
+                      shared: enlace.shared,
+                    });
                   }}
                 >
                   <a>delete</a>
                 </span>
+
                 <span
                   className="material-symbols-outlined"
                   style={{
@@ -199,14 +230,13 @@ export default function EnlaceListByCategory({ category, onCreateEnlace }: Props
             justifyContent: "space-between",
             alignItems: "center",
           }}
-          
         >
           <a
             style={{ display: "flex", gap: ".2rem" }}
             onClick={(event) => {
-                    event.stopPropagation();
-                    onCreateEnlace();
-                  }}
+              event.stopPropagation();
+              onCreateEnlace();
+            }}
           >
             <span className="material-symbols-outlined">add_circle</span>
             Crear enlace

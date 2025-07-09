@@ -9,6 +9,8 @@ import CreateRepo from "../../components/private/RepositoryCRUD";
 import UpdateRepoSelector from "../../components/private/UpdateRepo";
 import DeleteRepoSelector from "../../components/private/DeleteRepoSelector";
 import CreateEnlace from "../../components/private/crud_enlaces/createEnlace";
+import UpdateEnlace from "../../components/private/crud_enlaces/updateEnlaces";
+import DeleteEnlace from "../../components/private/crud_enlaces/deleteEnlace";
 
 export default function DashboardPage() {
   const auth = useContext(AuthContext);
@@ -27,6 +29,13 @@ export default function DashboardPage() {
   const [selectedRepoDesc, setSelectedRepoDesc] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[] | null>(null);
   const [selectedRepoId, setSelectedRepoId] = useState<number | null>(null);
+  const [selectedEnlace, setSelectedEnlace] = useState<{
+    id: number;
+    url: string;
+    name: string;
+    visibility: string;
+    shared: boolean;
+  } | null>(null);
 
   //*CRUD REPOSITORY ---------------------
   const [createRepoButton, setCreateRepoButton] = useState<boolean | null>(
@@ -34,6 +43,7 @@ export default function DashboardPage() {
   );
   const [showUpdate, setShowUpdate] = useState<boolean | null>(null);
   const [showDelete, setShowDelete] = useState<boolean | null>(null);
+
   //*CRUD ENLACES --------------------------
   const [showCreateEnlaces, setShowCreateEnlaces] = useState<boolean | null>(
     null
@@ -61,6 +71,28 @@ export default function DashboardPage() {
   //*CRUD ENLACES HANDLERS ---------------------
   const handlerCreateEnlace = () => {
     setShowCreateEnlaces(true);
+  };
+
+  const handleEditEnlace = (enlace: {
+    id: number;
+    url: string;
+    name: string;
+    visibility: string;
+    shared: boolean;
+  }) => {
+    setSelectedEnlace(enlace);
+    setShowUpdateEnlaces(true);
+  };
+
+  const handleDeleteEnlace = (enlace: {
+    id: number;
+    url: string;
+    name: string;
+    visibility: string;
+    shared: boolean;
+  }) => {
+    setSelectedEnlace(enlace);
+    setShowDeleteEnlaces(true);
   };
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -91,7 +123,8 @@ export default function DashboardPage() {
               setSelectedTags={setSelectedTags}
               openIndex={openIndex}
               setOpenIndex={setOpenIndex}
-              setSelectedRepoId={setSelectedRepoId} 
+              setSelectedRepoId={setSelectedRepoId}
+              setSelectedEnlace={setSelectedEnlace}
             />
           </div>
           <div
@@ -124,6 +157,9 @@ export default function DashboardPage() {
             <EnlaceListByCategory
               category={selectedRepoName}
               onCreateEnlace={handlerCreateEnlace}
+              onEditEnlace={handleEditEnlace}
+              onDeleteEnlace={handleDeleteEnlace}
+              // repoId={selectedRepoId}
             />
           </div>
         </div>
@@ -178,11 +214,41 @@ export default function DashboardPage() {
           <DeleteRepoSelector onCancel={() => setShowDelete(false)} />
         )}
       </div>
-      {/* //* CRUD ENLACE COMPONENTS ------------------------------ */}
+      {/* //* CRUD ENLACE MODALS ------------------------------ */}
       {showCreateEnlaces && (
         <CreateEnlace
           onCancel={() => setShowCreateEnlaces(false)}
           repoId={selectedRepoId}
+        />
+      )}
+      {showUpdateEnlaces && selectedEnlace && selectedRepoId !== null && (
+        <UpdateEnlace
+          repoId={selectedRepoId}
+          enlaceId={selectedEnlace.id}
+          initialData={{
+            url: selectedEnlace.url,
+            name: selectedEnlace.name,
+            visibility: selectedEnlace.visibility,
+            shared: selectedEnlace.shared,
+          }}
+          onCancel={() => setShowUpdateEnlaces(false)}
+          onSuccess={() => {
+            setShowUpdateEnlaces(false);
+            setSelectedEnlace(null);
+          }}
+        />
+      )}
+
+      {showDeleteEnlaces && selectedEnlace && selectedRepoId !== null && (
+        <DeleteEnlace
+          repoId={selectedRepoId}
+          enlaceId={selectedEnlace.id}
+          initialData={selectedEnlace}
+          onCancel={() => setShowDeleteEnlaces(false)}
+          onSuccess={() => {
+            setShowDeleteEnlaces(false);
+            setSelectedEnlace(null);
+          }}
         />
       )}
     </>

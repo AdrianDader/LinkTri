@@ -4,6 +4,14 @@ import AuthContext from "../../context/AuthContext"; // 👈 usamos el contexto,
 import "./Accordion.css";
 import { RepositoryListProps } from "./typesList";
 
+export interface EnlaceData {
+  id: number;
+  url: string;
+  name: string;
+  visibility: string;
+  shared: boolean;
+}
+
 export default function RepositoryList({
   repository,
   setRepository,
@@ -13,8 +21,9 @@ export default function RepositoryList({
   setOpenIndex,
   setSelectedRepoDesc,
   setSelectedTags,
-  setSelectedRepoId, // ← nuevo prop
-}: RepositoryListProps & { setSelectedRepoId: (id: number) => void })  {
+  setSelectedRepoId,
+  setSelectedEnlace
+}: RepositoryListProps & { setSelectedRepoId: (id: number) => void }) {
   const { accessToken } = useContext<any>(AuthContext); // ✅ correctamente accedido
 
   // const [repository, setRepository] = useState<RepositoriesResponse>({
@@ -39,10 +48,13 @@ export default function RepositoryList({
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div style={{
-      maxHeight: "40rem",
-      overflowY: "auto" }}
-      className="custom-scroll">
+    <div
+      style={{
+        maxHeight: "40rem",
+        overflowY: "auto",
+      }}
+      className="custom-scroll"
+    >
       <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
         rel="stylesheet"
@@ -87,7 +99,23 @@ export default function RepositoryList({
                   <ul style={{ listStyle: "none", paddingLeft: "1rem" }}>
                     {enlaces.map((enlace) => (
                       <li key={enlace.id} style={{ marginBottom: ".5rem" }}>
-                        <div style={{ display: "flex", gap: ".5rem" }}>
+                        <div
+                          style={{ display: "flex", gap: ".5rem" }}
+                          onClick={() => {
+                            setSelectedRepoId(repoData.id); // ← Ya lo haces
+                            setSelectedEnlace({
+                              id: enlace.id,
+                              url: enlace.url,
+                              name: enlace.name,
+                              visibility: enlace.visibility,
+                              shared: enlace.shared,
+                            });
+                            setSelectedLinkName(enlace.name); // si lo necesitas
+                            setSelectedRepoName(category);
+                            setSelectedRepoDesc(repoData.description);
+                            setSelectedTags(repoData.tags);
+                          }}
+                        >
                           {enlace.visibility === "private" ? (
                             <span className="material-symbols-outlined ">
                               lock

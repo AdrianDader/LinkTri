@@ -1,3 +1,5 @@
+import { EnlaceData } from "./RepositoryList";
+
 export interface RepositoryListProps {
   repository: RepositoriesResponse;
   setRepository: React.Dispatch<React.SetStateAction<RepositoriesResponse>>;
@@ -8,6 +10,7 @@ export interface RepositoryListProps {
   openIndex: number | null;
   setOpenIndex: React.Dispatch<React.SetStateAction<number | null>>;
   setSelectedRepoId: React.Dispatch<React.SetStateAction<number | null>>;
+  setSelectedEnlace: React.Dispatch<React.SetStateAction<EnlaceData | null>>;
 }
 
 export type RepositoriesResponse = {
