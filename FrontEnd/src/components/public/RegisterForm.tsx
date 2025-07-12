@@ -6,7 +6,6 @@ import AuthContext from "../../context/AuthContext"; // 👈 Importa el contexto
 import "./../../pages/public/RegisterPage/RegisterPage.css";
 import { useNavigate } from "react-router-dom";
 
-
 type RegisterUser = {
   name: string;
   email: string;
@@ -39,48 +38,82 @@ export default function RegisterForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    // Validación simple
+    if (name === "email") {
+      // Regex email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (value === "") {
+        setErrors(null);
+      } else if (!emailRegex.test(value)) {
+        setErrors("Por favor, ingresa un email válido.");
+      } else {
+        setErrors(null);
+      }
+    }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (name === "password") {
+      if (value.length == 0) {
+        setErrors(null);
+      } else if (!passwordRegex.test(value)) {
+        setErrors(
+          "La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y un número."
+        );
+      } else {
+        setErrors(null);
+      }
+    }
+
+    if (name === "password_confirmation") {
+      if (value.length === 0) {
+        setErrors(null);
+      } else if (value !== form.password) {
+        setErrors("Las contraseñas no son iguales");
+      } else {
+        setErrors(null);
+      }
+    }
+
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  setErrors(null);
+    e.preventDefault();
+    setErrors(null);
 
-  // ✅ Esperamos directamente la respuesta de la API
-  const response = await fetchData(form);
+    // ✅ Esperamos directamente la respuesta de la API
+    const response = await fetchData(form);
 
-  // ⛔️ Si hubo error o la respuesta vino vacía
-  if (!response || !response.user) {
-    setErrors("No se han podido registrar los datos");
-    return;
-  }
+    // ⛔️ Si hubo error o la respuesta vino vacía
+    if (!response || !response.user) {
+      setErrors("No se han podido registrar los datos");
+      return;
+    }
 
-  // ✅ Guardamos usuario y token directamente
-  setUserLogged(response.user);
-  localStorage.setItem('userLogged', JSON.stringify(response.user));
-  setAccessToken(response.access_token);
-  localStorage.setItem('accessToken', response.access_token);
+    // ✅ Guardamos usuario y token directamente
+    setUserLogged(response.user);
+    localStorage.setItem("userLogged", JSON.stringify(response.user));
+    setAccessToken(response.access_token);
+    localStorage.setItem("accessToken", response.access_token);
 
-  // ✅ Confirmación visual
-  setIsSubmited(true);
-  setRegisteredName(response.user.name);
+    // ✅ Confirmación visual
+    setIsSubmited(true);
+    setRegisteredName(response.user.name);
 
-  // ✅ Limpiamos el formulario
-  setForm({
-    name: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
-  });
+    // ✅ Limpiamos el formulario
+    setForm({
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+    });
 
-  // ✅ Redirección inmediata tras éxito
-  console.log(response.user)
-  navigate("/dashboard");
-};
-
-  ;
+    // ✅ Redirección inmediata tras éxito
+    console.log(response.user);
+    navigate("/dashboard");
+  };
 
   return (
     <section className="hero__background">
@@ -101,6 +134,7 @@ export default function RegisterForm() {
                   name="name"
                   value={form.name}
                   onChange={handleChange}
+                  maxLength={20}
                 />
               </div>
               <div className="form-label__wrapper">
@@ -111,6 +145,13 @@ export default function RegisterForm() {
                   name="email"
                   value={form.email}
                   onChange={handleChange}
+                  minLength={6}
+                  maxLength={100}
+                  style={
+                    errors
+                      ? { border: "solid, 2px , #d4390f", color: "#d4390f" }
+                      : {}
+                  }
                 />
               </div>
               <div className="form-label__wrapper">
@@ -121,6 +162,12 @@ export default function RegisterForm() {
                   name="password"
                   value={form.password}
                   onChange={handleChange}
+                  maxLength={20}
+                  style={
+                    errors
+                      ? { border: "solid, 2px , #d4390f", color: "#d4390f" }
+                      : {}
+                  }
                 />
               </div>
               <div className="form-label__wrapper">
@@ -131,9 +178,17 @@ export default function RegisterForm() {
                   name="password_confirmation"
                   value={form.password_confirmation}
                   onChange={handleChange}
+                  maxLength={20}
+                  style={
+                    errors
+                      ? { border: "solid, 2px , #d4390f", color: "#d4390f" }
+                      : {}
+                  }
                 />
               </div>
-              <ButtonPrimary onClick="submit">Registrarse</ButtonPrimary>
+              <ButtonPrimary style={{marginTop: '.5rem'}}onClick="submit" disabled={errors ? true : false}>
+                Registrarse
+              </ButtonPrimary>
 
               {loading && <p>Registrando usuario...</p>}
               {errors && <p className="error">{errors}</p>}

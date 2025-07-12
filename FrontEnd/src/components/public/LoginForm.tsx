@@ -44,6 +44,28 @@ export default function LoginForm({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    // Validación simple
+    if (name === "email") {
+      // Regex email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        setErrors("Por favor, ingresa un email válido.");
+      } else {
+        setErrors(null);
+      }
+    }
+
+    if (name === "password") {
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+      if (value.length == 0) {
+        setErrors(null);
+      } else if (!passwordRegex.test(value)) {
+      setErrors("La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y un número.");
+      } else {
+        setErrors(null);
+      }
+    }
+
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -69,7 +91,7 @@ export default function LoginForm({
 
       // Guardar token en contexto
       setAccessToken(loginResponse.access_token);
-      localStorage.setItem('accessToken', loginResponse.access_token);
+      localStorage.setItem("accessToken", loginResponse.access_token);
 
       // 2. Obtener datos usuario con token recibido
       const userResponse = await fetchData({
@@ -79,28 +101,23 @@ export default function LoginForm({
           Authorization: `Bearer ${loginResponse.access_token}`,
         },
       });
-      
 
       if (!userResponse) {
-        
         setErrors("No se pudieron obtener los datos del usuario");
         return;
       }
 
       // Guardar datos usuario en contexto
       setUserLogged(userResponse.user);
-      localStorage.setItem('userLogged', JSON.stringify(userResponse.user));
-      console.log(userLogged)
-      console.log('UserResponse:',userResponse)
-      console.log('UserResponse.name:',userResponse.user.name)
-      console.log(loginResponse.access_token)
-      
+      localStorage.setItem("userLogged", JSON.stringify(userResponse.user));
+      console.log(userLogged);
+      console.log("UserResponse:", userResponse);
+      console.log("UserResponse.name:", userResponse.user.name);
+      console.log(loginResponse.access_token);
 
       setIsSubmited(true);
       setRegisteredName(userResponse.name);
       setForm({ email: "", password: "" });
-      
-
 
       navigate("/dashboard");
     } catch (err: any) {
@@ -131,6 +148,11 @@ export default function LoginForm({
                   name="email"
                   value={form.email}
                   onChange={handleChange}
+                  style={
+                    errors
+                      ? { border: "solid, 2px , #d4390f", color: "#d4390f" }
+                      : {}
+                  }
                 />
               </div>
               <div className="form-label__wrapper">
@@ -141,6 +163,11 @@ export default function LoginForm({
                   name="password"
                   value={form.password}
                   onChange={handleChange}
+                  style={
+                    errors
+                      ? { border: "solid, 2px , #d4390f", color: "#d4390f" }
+                      : {}
+                  }
                 />
               </div>
               <ButtonPrimary onClick="submit">Iniciar sesión</ButtonPrimary>

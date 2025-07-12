@@ -56,10 +56,8 @@ class EnlaceController extends Controller
         // Creamos el enlace con el repository_id
         $enlace = new Enlace($validated);
         $enlace->repository_id = $repository->id;
-        // $enlace->public_link = 'https://example.com/' . Str::random(10);
-        $enlace->public_link = 'https://api.qrserver.com/v1/create-qr-code/?data=' . $enlace->id . Str::random(10) . 'size=500x500';
-        $enlace->private_link = 'https://api.qrserver.com/v1/create-qr-code/?data=' . $enlace->id . Str::random(12) . 'size=500x500';
-        // $enlace->private_link = 'https://example.com/private/' . Str::random(12);
+        $enlace->public_link = 'https://api.qrserver.com/v1/create-qr-code/?data=' . $enlace->name . '&size=500x500';
+        $enlace->private_link = 'https://api.qrserver.com/v1/create-qr-code/?data=' . Str::random(20) . '&size=500x500';
         $enlace->save();
 
         return response()->json(['message' => 'Enlace ' . $enlace->id .' creado correctamente.', 'enlace' => $enlace], 201);
