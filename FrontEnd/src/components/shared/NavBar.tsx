@@ -69,9 +69,6 @@ export default function NavBar() {
           >
             About me
           </NavLink>
-          <NavLink to="/#faq" className={() => getNavLinkClass("/#faq")}>
-            FAQ
-          </NavLink>
         </nav>
         <nav className="navbar__list">
           {userLogged.id ? (

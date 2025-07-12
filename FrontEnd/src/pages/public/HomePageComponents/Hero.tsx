@@ -24,21 +24,19 @@ export default function Hero() {
               <span style={{ color: "#363636", fontSize: "3rem" }}>Tri</span>
             </h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti,
-              id minus! Nostrum facere opfgFsdfio facilis cumque nisi, officiis,
-              beatae porro aspernatur voluptatibus possimus ut laborum fugiat
-              sit nulla tempore hic. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Distinctio quas dolorum quibusdam, fugit modi
-              ullam magni. Unde assumenda distinctio quas facere odit
-              praesentium qui beatae? Nulla adipisci officia enim tempore? Lorem
-              ipsum, dolor sit amet consectetur adipisicing elit. Amet voluptate
-              exercitationem tenetur nisi placeat commodi distinctio animi,
-              provident eum, asperiores iure dolorem vero quas minus ducimus
-              odio numquam dignissimos saepe.
+              <span style={{fontWeight:'800' , color: 'var(--text-green)'}}>
+                Organiza, comparte y colabora con tu propio hub de enlaces
+                personalizado.{" "}  
+              </span>
+              Crea tu perfil, agrupa todos tus enlaces bajo categorías, controla
+              quién ve qué y trabaja en conjunto con tu equipo. Un sistema
+              potente, flexible y moderno, desarrollado con React y Laravel.
             </p>
             <div className="hero-buttons__wrapper">
               <ButtonPrimary onClick={handleLogin}>Login</ButtonPrimary>
-              <ButtonSecondary onClick={handleRegister}>Crear cuenta</ButtonSecondary>
+              <ButtonSecondary onClick={handleRegister}>
+                Crear cuenta
+              </ButtonSecondary>
             </div>
           </div>
           <div className="hero__wrapper hero-vector">
@@ -46,8 +44,10 @@ export default function Hero() {
               src="https://lottie.host/e8a91934-3750-40d0-9ec9-3c9b027d0e6d/h9ILFIhCip.lottie"
               loop
               autoplay
+              style={{ width: "400px", height: "400px" }}
             />
           </div>
+          <div className="prueba"></div>
         </section>
       </section>
     </>

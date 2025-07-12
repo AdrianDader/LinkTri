@@ -13,6 +13,12 @@
   grid-row-gap: 0px;
   height: calc(100vh - 4.3994rem);
   background-color: #00000015;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
+
 }
 
 .dashboard__section > div:nth-child(2),
@@ -29,6 +35,13 @@
 
 .dashboard__section > div:nth-child(2) {
   margin-left: 0;
+
+
+  @media (max-width: 768px) {
+   margin: 0;
+  }
+
+
 }
 .dashboard__section > div:nth-child(3) {
   margin: 1rem 0;
@@ -60,6 +73,10 @@
   
   grid-area: var(--dashboard-left-grid);
 
+  @media (max-width: 768px) {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
 }
 
 .dashboard-aside__box > h2 {
@@ -67,9 +84,19 @@
 } 
 .dashboard-center__wrapper {
   grid-area: var(--dashboard-center-grid);
+
+   @media (max-width: 768px) {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
 }
 .dashboard-sidebar-right__wrapper {
   grid-area: var(--dashboard-right-grid);
+
+   @media (max-width: 768px) {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+
 }
 
 .dashboard-sidebar-left__box-buttons > button {

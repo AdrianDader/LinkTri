@@ -16,7 +16,7 @@ export default function Footer() {
       </div>
     ));
 
-    return <div style={{ display: "flex", gap: "10px" }}>{allUrls}</div>;
+    return <div style={{ display: "flex", gap: "0.4rem" }}>{allUrls}</div>;
   }
 
   return (
@@ -25,16 +25,10 @@ export default function Footer() {
         <div className="footer__box">
           <h2 className="footer__title">LinkTri</h2>
           <p className="footer__desc">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero
-            iste laudantium ab voluptatem porro similique doloremque
-            voluptatibus quasi reiciendis deserunt earum quos, omnis eos
-            voluptas enim assumenda accusamus cumque suscipit.
+            Una plataforma para gestionar y compartir múltiples enlaces de forma organizada, con categorías, visibilidad personalizada y funciones colaborativas.
           </p>
           <p className="footer__desc">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero
-            iste laudantium ab voluptatem porro similique doloremque
-            voluptatibus quasi reiciendis deserunt earum quos, omnis eos
-            voluptas enim assumenda accusamus cumque suscipit.
+            Proyecto full-stack inspirado en Linktree, desarrollado con React (frontend) y Laravel (backend), que permite a los usuarios gestionar enlaces, personalizar sus perfiles y compartir contenido fácilmente.
           </p>
         </div>
         <div className="footer__box">

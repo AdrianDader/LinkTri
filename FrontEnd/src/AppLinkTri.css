@@ -23,7 +23,17 @@
   max-width: 80rem;
   margin: 0 auto;
 
-  @media (min-width: 1024px) { }
+  /* @media (max-width: 1024px) {
+
+    max-width: 40rem;
+
+  } */
+
+  @media (max-width: 768px) {
+
+    max-width: 30rem;
+
+  }
 
 }
 
@@ -68,7 +78,7 @@
   
     
   
-  padding: 1rem 0;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   
@@ -84,6 +94,46 @@
 .active {
   color: var(--text-green);
 }
+/* NavBar Ham ----------------------------------------- */
+
+.navbar-ham {
+  background: var(--text-white);
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.navbar-ham__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.hamburger-button {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger-menu {
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--background-footer-grey);
+  padding: 2rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 6px #0000001a;
+}
+
+.hamburger-menu > a {
+    color: var(--text-white)
+}
+
 /* footer -------------------------------------------------- */
 
 .footer__section {
@@ -95,8 +145,16 @@
   grid-template-columns: 1fr 1fr;
   align-items: baseline;
   gap: 2rem;
-  padding: 4rem 0;
+  padding: 4rem 2rem;
   justify-items: end;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    height: auto;
+    padding: 2rem;
+    justify-items: flex-start;
+  }
 }
 
 .footer__title {
@@ -111,10 +169,18 @@
 
 .footer-icons__list {
   list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: end;
   margin: 0;
+
+  @media (max-width: 768px) {
+
+    justify-items: flex-start;
+    align-items: flex-start;
+
+  }
 }
 
 .footer__desc:last-child {

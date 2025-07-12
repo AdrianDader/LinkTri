@@ -13,7 +13,7 @@
   },
   {
     "id": 3,
-    "name": "Guarda enlaces y compártelos",
+    "name": "Guarda y comparte",
     "description": "Dentro de cada repositorio puedes guardar todos los enlaces que quieras. Simplemente copias y pegas la URL, puedes añadirle un título o una descripción, y se guarda automáticamente en la carpeta correspondiente. Esto convierte a LinkTri en una herramienta muy útil para recopilar recursos, ideas o sitios web importantes. Además, puedes generar un enlace único o un código QR para compartir cada repositorio. Esto es ideal si quieres enviar tus referencias a alguien más, compartirlas en redes sociales, o incluso imprimir el QR para que otros lo escaneen. Así, toda la información está centralizada y accesible desde un solo lugar, sin necesidad de enviar muchos links por separado.",
     "svgImage": "https://lottie.host/98b97263-f69b-41f9-9fc0-bc85b96a4ad3/iZd25Fj6cB.lottie"
   }
