@@ -111,7 +111,6 @@ export default function DashboardPage() {
           {/* <p>No existen repositorios...</p> */}
 
           <div className="dashboard-aside__box">
-            {/* //todo scroll bar */}
             <h2>Repositorios</h2>
             {/* //todo aplicar useMemo al repo */}
             <RepositoryList

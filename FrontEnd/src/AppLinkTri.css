@@ -128,6 +128,7 @@
   left: 0;
   width:-webkit-fill-available;
   box-shadow: 0 4px 6px #0000001a;
+  z-index: 99;
 }
 
 .hamburger-menu > a {

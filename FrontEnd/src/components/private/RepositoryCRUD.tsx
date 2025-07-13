@@ -100,6 +100,7 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
               placeholder="Nombre del repositorio"
               value={formData.name}
               onChange={handleChange}
+              maxLength={20}
               required
             />
 
@@ -109,6 +110,7 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
               value={formData.description}
               onChange={handleChange}
               required
+              maxLength={200}
               style={{resize: "none", height: "100px"}}
               
             />
@@ -148,6 +150,7 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
                   borderRadius: "4px",
                   border: "1px solid #ccc",
                 }}
+                
               />
 
               <div
@@ -170,6 +173,7 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
                         value={tag}
                         checked={selectedTags.includes(tag)}
                         onChange={() => handleTagCheckbox(tag)}
+
                       />{" "}
                       {tag}
                     </label>

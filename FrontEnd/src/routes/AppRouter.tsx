@@ -5,6 +5,7 @@ import RegisterPage from "../pages/public/RegisterPage";
 import LoginPage from "../pages/public/LoginPage";
 import { useAuth } from "../context/useAuth";
 import NotFound from "../pages/shared/NotFoundPage";
+import UserProfile from "../pages/private/Profile";
 
 export default function AppRouter() {
   const { userLogged } = useAuth();
@@ -19,7 +20,8 @@ export default function AppRouter() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         {/* PRIVATE ROUTES */}
-        {userLogged.id && <Route path="/dashboard" element={<DashboardPage />} />}ç
+        {userLogged.id && <Route path="/dashboard" element={<DashboardPage />} />}
+        {userLogged.id && <Route path="/profile" element={<UserProfile />} />}
 
         {/* Not Found */}
         <Route path="*" element={<NotFound />} />

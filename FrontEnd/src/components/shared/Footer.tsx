@@ -6,9 +6,9 @@ import socialUrls from "./FooterSocialIcons";
 export default function Footer() {
   function SocialIcons() {
     const allUrls = socialUrls.map((url: string, index: number) => (
-      <div className={"footer__icons"}>
+      <div className={"footer__icons"} key={index} >
         <SocialIcon
-          key={index}
+          
           bgColor="none"
           fgColor="currentColor"
           url={url}

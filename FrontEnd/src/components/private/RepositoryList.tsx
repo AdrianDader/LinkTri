@@ -3,6 +3,7 @@ import { useFetchingDataGetRepository } from "../../hooks/useFetchingGetReposito
 import AuthContext from "../../context/AuthContext"; // 👈 usamos el contexto, no el Provider
 import "./Accordion.css";
 import { RepositoryListProps } from "./typesList";
+import useIsMobile from "../../hooks/useMobile";
 
 export interface EnlaceData {
   id: number;
@@ -22,7 +23,7 @@ export default function RepositoryList({
   setSelectedRepoDesc,
   setSelectedTags,
   setSelectedRepoId,
-  setSelectedEnlace
+  setSelectedEnlace,
 }: RepositoryListProps & { setSelectedRepoId: (id: number) => void }) {
   const { accessToken } = useContext<any>(AuthContext); // ✅ correctamente accedido
 
@@ -34,6 +35,8 @@ export default function RepositoryList({
     "http://localhost:8000/api/repository-content",
     accessToken
   );
+
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (!accessToken) return;
@@ -100,7 +103,14 @@ export default function RepositoryList({
                     {enlaces.map((enlace) => (
                       <li key={enlace.id} style={{ marginBottom: ".5rem" }}>
                         <div
-                          style={{ display: "flex", gap: ".5rem" }}
+                          style={{
+                            display: "flex",
+                            gap: ".5rem",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            maxWidth: isMobile ? "20px" : "200px",
+                          }}
                           onClick={() => {
                             setSelectedRepoId(repoData.id); // ← Ya lo haces
                             setSelectedEnlace({

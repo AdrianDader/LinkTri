@@ -77,6 +77,7 @@ export default function CreateEnlace({ onCancel, repoId }: CreateEnlaceProps) {
             placeholder="Nombre del enlace"
             value={formData.name}
             onChange={handleChange}
+            maxLength={35}
             required
           />
 
