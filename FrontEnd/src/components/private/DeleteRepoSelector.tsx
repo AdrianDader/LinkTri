@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthContext";
 import { useFetchingData } from "../../hooks/useFetchingData";
 import { ButtonPrimary, ButtonSecondary } from "../shared/button";
 
+
 interface Repo {
   id: number;
   name: string;
@@ -25,6 +26,7 @@ export default function DeleteRepoSelector({
   const [repos, setRepos] = useState<Repo[]>([]);
   const [selectedRepoId, setSelectedRepoId] = useState<number | null>(null);
   const [selectedRepo, setSelectedRepo] = useState<Repo | null>(null);
+
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -81,6 +83,7 @@ export default function DeleteRepoSelector({
           <h2 style={{ margin: 0 }}>Eliminar Repositorio</h2>
 
           <label>
+            <div style={{display:'flex', flexDirection:'column'}}>
             Selecciona un repositorio:
             <select
               value={selectedRepoId ?? ""}
@@ -95,7 +98,7 @@ export default function DeleteRepoSelector({
                   {repo.name}
                 </option>
               ))}
-            </select>
+            </select></div>
           </label>
 
           {selectedRepo && (

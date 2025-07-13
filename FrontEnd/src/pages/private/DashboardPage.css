@@ -39,6 +39,7 @@
 
   @media (max-width: 768px) {
    margin: 0;
+   padding:1rem;
   }
 
 
@@ -54,11 +55,19 @@
   border-radius: 0.5rem;
   margin: 1rem 1rem;
   padding: 2rem;
+
+  @media (max-width: 768px) {
+   margin: 0;
+   padding: 1rem;
+  }
+
 }
 
 .dashboard__section > div > h2 {
   margin: 0;
   color: var(--text-green);
+
+
 }
 
 .dashboard-sidebar-left__wrapper, .dashboard-sidebar-right__wrapper {

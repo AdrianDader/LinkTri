@@ -135,6 +135,7 @@ export default function UpdateRepoSelector({ onCancel }: UpdateRepoSelectorProps
 
           {/* SELECT REPO */}
           <label>
+            <div style={{display: 'flex', flexDirection: 'column'}}>
             Selecciona un repositorio:
             <select
               value={selectedRepoId ?? ""}
@@ -147,7 +148,7 @@ export default function UpdateRepoSelector({ onCancel }: UpdateRepoSelectorProps
                   {repo.name}
                 </option>
               ))}
-            </select>
+            </select></div>
           </label>
 
           {selectedRepoId && (

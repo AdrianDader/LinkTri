@@ -126,7 +126,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
+  width:-webkit-fill-available;
   box-shadow: 0 4px 6px #0000001a;
 }
 

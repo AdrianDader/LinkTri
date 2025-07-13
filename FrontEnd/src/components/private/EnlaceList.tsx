@@ -3,6 +3,7 @@ import { useFetchingDataGetRepository } from "../../hooks/useFetchingGetReposito
 import AuthContext from "../../context/AuthContext";
 import "./../../components/private/EnlaceList.css";
 import ClipboardCopyButton from "../shared/ClipboardCopyButton";
+import useIsMobile from "../../hooks/useMobile";
 
 interface Props {
   category: string | null;
@@ -38,6 +39,8 @@ export default function EnlaceListByCategory({
 
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [copiedId, setCopiedId] = useState<number | null>(null);
+
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (accessToken) fetchData();
@@ -167,7 +170,14 @@ export default function EnlaceListByCategory({
                   borderBottom: "1px solid #ddd",
                 }}
               >
-                <p>
+                <p
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxWidth: isMobile ? "250px" : "800px", // Aproximadamente 30 caracteres, ajusta según fuente/tamaño
+                  }}
+                >
                   <strong>URL:</strong>{" "}
                   <a
                     href={enlace.url}
@@ -190,7 +200,14 @@ export default function EnlaceListByCategory({
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <p>
+                  <p
+                    style={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxWidth: isMobile ? "250px" : "800px", // Aproximadamente 30 caracteres, ajusta según fuente/tamaño
+                    }}
+                  >
                     <strong>Enlace público: </strong>
                     {enlace.public_link}
                   </p>
@@ -205,7 +222,14 @@ export default function EnlaceListByCategory({
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <p>
+                  <p
+                    style={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxWidth: isMobile ? "250px" : "800px",
+                    }}
+                  >
                     <strong>Enlace privado: </strong>
                     {"•".repeat(enlace.private_link.length)}
                   </p>

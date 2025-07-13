@@ -17,6 +17,11 @@
   padding: 2rem;
   position: relative;
   top: 4rem;
+
+  @media (max-width: 768px) {
+   margin: 2rem;
+   padding:1rem;
+  }
 }
 .create-repo__form {
   display: flex;
