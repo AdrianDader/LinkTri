@@ -4,6 +4,7 @@ import NavBar from "./components/shared/NavBar";
 import NavBarHam from "./components/shared/NavBarHam";
 import useIsMobile from "./hooks/useMobile";
 import AppRouter from "./routes/AppRouter";
+import Loader from "./components/shared/loader";
 
 function AppContent() {
   const location = useLocation();
@@ -12,6 +13,7 @@ function AppContent() {
   const hideFooter = location.pathname.startsWith("/dashboard");
   return (
     <>
+     {/* < Loader /> */}
       {isMobile ? <NavBarHam /> : <NavBar />}
       <AppRouter />
       {!hideFooter && <Footer />}

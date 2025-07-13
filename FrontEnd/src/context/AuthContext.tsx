@@ -7,7 +7,11 @@ type AuthContextType = {
   accessToken: string | null;
   setAccessToken: React.Dispatch<React.SetStateAction<string | null>>;
   logout: () => void;
-  // Eliminamos user y setUser que no existen ya en el provider
+   isLoading: boolean | null;
+  showLoader: () => void;
+  hideLoader: () => void;
+
+
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

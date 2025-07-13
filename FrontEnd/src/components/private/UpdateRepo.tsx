@@ -33,6 +33,8 @@ export default function UpdateRepoSelector({ onCancel }: UpdateRepoSelectorProps
     tags: [],
   });
   const [tagSearch, setTagSearch] = useState("");
+  const auth = useContext(AuthContext);
+    const { showLoader, hideLoader } = auth;
 
   // Cargar todos los repositorios
   useEffect(() => {
@@ -119,7 +121,11 @@ export default function UpdateRepoSelector({ onCancel }: UpdateRepoSelectorProps
       tags: [],
     });
     setTagSearch("");
+    
+    showLoader();
+    await new Promise((r) => setTimeout(r, 3000));
     RefreshPage();
+    hideLoader();
     
   };
 

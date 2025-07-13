@@ -1,4 +1,4 @@
-/* ----------------------- hero section ----------------------------------------- */
+/** ----------------------- hero section ----------------------------------------- */
 .hero__background {
   height: calc(100vh - 5.3rem); /* altura igual al viewport */
 
@@ -51,13 +51,16 @@
   display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .height-viewport {
   height: 100vh;
 }
 
-/* -----------------------  what is ----------------------------------------- */
+/** -----------------------  what is ----------------------------------------- */
 
 .what-is__section {
   position: relative;
@@ -133,7 +136,7 @@
   margin: 0;
 }
 
-/* -----------------------  how it works ----------------------------------------- */
+/** -----------------------  how it works ----------------------------------------- */
 
 .how-it-works__background {
   /* height: 100vh; */
@@ -199,7 +202,7 @@
   width: 100%;
 }
 
-/* -----------------------  about me ----------------------------------------- */
+/** -----------------------  about me ----------------------------------------- */
 
 .about-me__section {
   position: relative;

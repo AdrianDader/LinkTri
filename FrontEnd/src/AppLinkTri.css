@@ -41,7 +41,7 @@
   height: calc(100vh - 5.3rem);
 }
 
-/* NavBar ---------------------------------------------  */
+/**---------------------- NavBar --------------------------------  */
 
 .navbar__logo {
   font-size: 1.6rem;
@@ -94,7 +94,7 @@
 .active {
   color: var(--text-green);
 }
-/* NavBar Ham ----------------------------------------- */
+/**------------------- NavBar Ham --------------------------- */
 
 .navbar-ham {
   background: var(--text-white);
@@ -135,7 +135,7 @@
     color: var(--text-white)
 }
 
-/* footer -------------------------------------------------- */
+/**------------------------- footer ---------------------------------- */
 
 .footer__section {
   background-color: var(--background-footer-grey);
@@ -192,4 +192,33 @@
   color: var(--text-green);
 }
 
+/**--------------------Loader --------------------------------*/
 
+.loader__section {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh);
+  top: 0;
+  background-color: var(--text-white);
+  /* backdrop-filter: blur(8px); */
+  z-index: 9999;
+}
+
+.loader__wrapper {
+  text-align: center;
+  color: red;
+  max-width: 40rem;
+  /* border: solid 1px var(--text-green); */
+  border-radius: .5rem;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  top: 17rem;
+
+  @media (max-width: 768px) {
+
+   margin: 2rem;
+   padding:1rem;
+   top: 15rem;
+  }
+}

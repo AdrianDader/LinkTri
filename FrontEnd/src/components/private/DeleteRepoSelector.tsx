@@ -27,6 +27,13 @@ export default function DeleteRepoSelector({
   const [selectedRepoId, setSelectedRepoId] = useState<number | null>(null);
   const [selectedRepo, setSelectedRepo] = useState<Repo | null>(null);
 
+  const auth = useContext(AuthContext);
+  const { showLoader, hideLoader } = auth;
+
+  const RefreshPage = () => {
+    window.location.reload();
+  };
+
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -70,7 +77,12 @@ export default function DeleteRepoSelector({
 
     setSelectedRepoId(null);
     setSelectedRepo(null);
-    window.location.reload(); // o podrías hacer onCancel()
+ 
+
+    showLoader();
+    await new Promise((r) => setTimeout(r, 3000));
+    RefreshPage();
+    hideLoader();
   };
 
   return (

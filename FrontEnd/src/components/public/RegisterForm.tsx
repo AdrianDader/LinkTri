@@ -35,6 +35,7 @@ export default function RegisterForm() {
   }
 
   const { userLogged, setUserLogged, setAccessToken } = auth;
+    const { showLoader, hideLoader } = auth;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -80,6 +81,8 @@ export default function RegisterForm() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+    
     e.preventDefault();
     setErrors(null);
 
@@ -110,9 +113,12 @@ export default function RegisterForm() {
       password_confirmation: "",
     });
 
-    // ✅ Redirección inmediata tras éxito
-    console.log(response.user);
-    navigate("/dashboard");
+
+     showLoader();
+      navigate("/dashboard");
+      await new Promise((r) => setTimeout(r, 3000));
+      // Simula una carga
+      hideLoader();
   };
 
   return (

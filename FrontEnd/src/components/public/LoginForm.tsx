@@ -36,6 +36,8 @@ export default function LoginForm({
   const { loading, fetchData } = useFetchingData();
 
   const auth = useContext(AuthContext);
+  const { showLoader, hideLoader } = auth;
+
   if (!auth) {
     throw new Error("RegisterForm debe estar dentro de un AuthProvider");
   }
@@ -60,7 +62,9 @@ export default function LoginForm({
       if (value.length == 0) {
         setErrors(null);
       } else if (!passwordRegex.test(value)) {
-      setErrors("La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y un número.");
+        setErrors(
+          "La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y un número."
+        );
       } else {
         setErrors(null);
       }
@@ -110,16 +114,16 @@ export default function LoginForm({
       // Guardar datos usuario en contexto
       setUserLogged(userResponse.user);
       localStorage.setItem("userLogged", JSON.stringify(userResponse.user));
-      console.log(userLogged);
-      console.log("UserResponse:", userResponse);
-      console.log("UserResponse.name:", userResponse.user.name);
-      console.log(loginResponse.access_token);
 
       setIsSubmited(true);
       setRegisteredName(userResponse.name);
       setForm({ email: "", password: "" });
 
+      showLoader();
       navigate("/dashboard");
+      await new Promise((r) => setTimeout(r, 3000));
+      // Simula una carga
+      hideLoader();
     } catch (err: any) {
       if (err.status === 401) {
         setErrors("Credenciales incorrectas.");
@@ -170,7 +174,7 @@ export default function LoginForm({
                   }
                 />
               </div>
-              <ButtonPrimary >Iniciar sesión</ButtonPrimary>
+              <ButtonPrimary>Iniciar sesión</ButtonPrimary>
               {loading && <p>Iniciando sesión...</p>}
               {errors && <p className="error">{errors}</p>}
             </form>

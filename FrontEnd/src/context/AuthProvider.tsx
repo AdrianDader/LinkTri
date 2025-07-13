@@ -1,5 +1,6 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState, useCallback } from "react";
 import AuthContext from "./AuthContext";
+import Loader from "../components/shared/loader";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -20,39 +21,39 @@ export type TypeUserLogged = {
 };
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  //* Guarda los datos del usuario logueado
   const [userLogged, setUserLogged] = useState<TypeUserLogged | null>({
     id: null,
     name: "",
     email: "",
   });
 
-  //* Guarda el token de acceso y se almacena en localStorage
   const [accessToken, setAccessToken] = useState(() =>
     localStorage.getItem("access_token")
   );
 
-   useEffect(() => {
-    // Al cargar, lee lo que haya en localStorage
-    const token = localStorage.getItem('accessToken');
-    const user = localStorage.getItem('userLogged');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const showLoader = useCallback(() => setIsLoading(true), []);
+  const hideLoader = useCallback(() => setIsLoading(false), []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    const user = localStorage.getItem("userLogged");
 
     if (token) setAccessToken(token);
     if (user) setUserLogged(JSON.parse(user));
   }, []);
 
-
   const logout = () => {
-  setUserLogged({
-    id: null,
-    name: "",
-    email: "",
-  });
-  setAccessToken(null);
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('userLogged');
-};
-
+    setUserLogged({
+      id: null,
+      name: "",
+      email: "",
+    });
+    setAccessToken(null);
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userLogged");
+  };
 
   return (
     <AuthContext.Provider
@@ -61,9 +62,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setUserLogged,
         accessToken,
         setAccessToken,
-        logout
+        logout,
+        isLoading,
+        showLoader,
+        hideLoader,
       }}
     >
+      {isLoading && ( < Loader />
+      )}
+
       {children}
     </AuthContext.Provider>
   );

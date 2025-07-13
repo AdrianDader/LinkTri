@@ -10,9 +10,11 @@ interface CreateRepoProps {
 
 //función formulario para crear repositorios
 export default function CreateRepo({ onCancel }: CreateRepoProps) {
-  
   // declarar variables desde AuthContext y formData. inicializarlo vacio.
   const { accessToken } = useContext<any>(AuthContext);
+  const auth = useContext(AuthContext);
+  const { showLoader, hideLoader } = auth;
+  
   const { loading, error, fetchData } = useFetchingData();
 
   const [formData, setFormData] = useState({
@@ -31,7 +33,10 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
   };
 
   // metodo para validaciones y para manejar los datos del formulario
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -80,7 +85,10 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
     setSelectedTags([]);
     setTagSearch("");
 
+    showLoader();
+    await new Promise((r) => setTimeout(r, 3000));
     RefreshPage();
+    hideLoader();
   };
 
   const filteredTags = TAG_OPTIONS.filter((tag) =>
@@ -92,7 +100,7 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
       <section className="create-repo__section">
         <div className="create-repo__wrapper">
           <form className="create-repo__form" onSubmit={handleSubmit}>
-            <h2 style={{margin: 0}}>Crear Nuevo Repositorio</h2>
+            <h2 style={{ margin: 0 }}>Crear Nuevo Repositorio</h2>
 
             <input
               type="text"
@@ -111,8 +119,7 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
               onChange={handleChange}
               required
               maxLength={200}
-              style={{resize: "none", height: "100px"}}
-              
+              style={{ resize: "none", height: "100px" }}
             />
 
             <select
@@ -150,7 +157,6 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
                   borderRadius: "4px",
                   border: "1px solid #ccc",
                 }}
-                
               />
 
               <div
@@ -173,7 +179,6 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
                         value={tag}
                         checked={selectedTags.includes(tag)}
                         onChange={() => handleTagCheckbox(tag)}
-
                       />{" "}
                       {tag}
                     </label>
@@ -186,8 +191,10 @@ export default function CreateRepo({ onCancel }: CreateRepoProps) {
               </div>
             </div>
 
-            <ButtonPrimary onClick="submit">{loading ? "Creando..." : "Crear Repositorio"}</ButtonPrimary>
-             <ButtonSecondary onClick={onCancel}>Cancelar</ButtonSecondary>
+            <ButtonPrimary onClick="submit">
+              {loading ? "Creando..." : "Crear Repositorio"}
+            </ButtonPrimary>
+            <ButtonSecondary onClick={onCancel}>Cancelar</ButtonSecondary>
 
             {error && <p style={{ color: "red" }}>Error: {error.message}</p>}
           </form>
