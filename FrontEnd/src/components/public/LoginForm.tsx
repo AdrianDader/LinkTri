@@ -170,7 +170,7 @@ export default function LoginForm({
                   }
                 />
               </div>
-              <ButtonPrimary onClick="submit">Iniciar sesión</ButtonPrimary>
+              <ButtonPrimary >Iniciar sesión</ButtonPrimary>
               {loading && <p>Iniciando sesión...</p>}
               {errors && <p className="error">{errors}</p>}
             </form>

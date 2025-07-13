@@ -24,6 +24,8 @@ export default function DashboardPage() {
     repositories: {},
   });
 
+  const zeroRepositories = repository.repositories?.length === 0;
+
   const [selectedLinkName, setSelectedLinkName] = useState<string | null>(null);
   const [selectedRepoName, setSelectedRepoName] = useState<string | null>(null);
   const [selectedRepoDesc, setSelectedRepoDesc] = useState<string | null>(null);
@@ -112,19 +114,23 @@ export default function DashboardPage() {
 
           <div className="dashboard-aside__box">
             <h2>Repositorios</h2>
+            {zeroRepositories ? (
+              <p>No existen repositorios.</p>
+            ) : (
+              <RepositoryList
+                repository={repository}
+                setRepository={setRepository}
+                setSelectedLinkName={setSelectedLinkName}
+                setSelectedRepoName={setSelectedRepoName}
+                setSelectedRepoDesc={setSelectedRepoDesc}
+                setSelectedTags={setSelectedTags}
+                openIndex={openIndex}
+                setOpenIndex={setOpenIndex}
+                setSelectedRepoId={setSelectedRepoId}
+                setSelectedEnlace={setSelectedEnlace}
+              />
+            )}
             {/* //todo aplicar useMemo al repo */}
-            <RepositoryList
-              repository={repository}
-              setRepository={setRepository}
-              setSelectedLinkName={setSelectedLinkName}
-              setSelectedRepoName={setSelectedRepoName}
-              setSelectedRepoDesc={setSelectedRepoDesc}
-              setSelectedTags={setSelectedTags}
-              openIndex={openIndex}
-              setOpenIndex={setOpenIndex}
-              setSelectedRepoId={setSelectedRepoId}
-              setSelectedEnlace={setSelectedEnlace}
-            />
           </div>
           <div
             className="dashboard-sidebar-left__buttons"
@@ -138,12 +144,14 @@ export default function DashboardPage() {
             <ButtonPrimary
               onClick={handlerEditRepo}
               children={<span className="material-symbols-outlined">edit</span>}
+              disabled={zeroRepositories ? true : false}
             />
             <ButtonSecondary
               onClick={handlerDeleteRepo}
               children={
                 <span className="material-symbols-outlined">delete</span>
               }
+              disabled={zeroRepositories ? true : false}
             />
           </div>
         </div>
@@ -194,7 +202,6 @@ export default function DashboardPage() {
               </ul>
             </div>
           </div>
-          {/* <div className="dashboard-sidebar-left__box-buttons"></div> */}
         </div>
       </section>
 

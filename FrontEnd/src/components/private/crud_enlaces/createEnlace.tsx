@@ -6,12 +6,13 @@ import "./../../../pages/private/DashboardPageOverlay.css";
 
 interface CreateEnlaceProps {
   onCancel: () => void;
-   repoId: number | null; // ID del repositorio seleccionado
+  repoId: number | null; // ID del repositorio seleccionado
 }
 
 export default function CreateEnlace({ onCancel, repoId }: CreateEnlaceProps) {
   const { accessToken } = useContext<any>(AuthContext);
   const { loading, error, fetchData } = useFetchingData();
+  const [errors, setErrors] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     url: "",
@@ -26,6 +27,20 @@ export default function CreateEnlace({ onCancel, repoId }: CreateEnlaceProps) {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value, type, checked } = e.target;
+
+    // Validación simple
+    if (name === "url") {
+      // Regex URL
+      const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/\S*)?$/;
+      if (value === "") {
+        setErrors(null);
+      } else if (!urlRegex.test(value)) {
+        setErrors("Por favor, ingresa una URL válida.");
+      } else {
+        setErrors(null);
+      }
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -38,7 +53,7 @@ export default function CreateEnlace({ onCancel, repoId }: CreateEnlaceProps) {
     const payload = { ...formData };
 
     await fetchData({
-       url: `http://localhost:8000/api/repository/${repoId}/enlaces`,
+      url: `http://localhost:8000/api/repository/${repoId}/enlaces`,
       payload,
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -69,6 +84,9 @@ export default function CreateEnlace({ onCancel, repoId }: CreateEnlaceProps) {
             value={formData.url}
             onChange={handleChange}
             required
+            style={
+              errors ? { border: "solid, 2px , #d4390f", color: "#d4390f" } : {}
+            }
           />
 
           <input
@@ -100,12 +118,13 @@ export default function CreateEnlace({ onCancel, repoId }: CreateEnlaceProps) {
             Compartido
           </label>
 
-          <ButtonPrimary onClick="submit">
+          <ButtonPrimary disabled={errors ? true : false}>
             {loading ? "Creando..." : "Crear Enlace"}
           </ButtonPrimary>
           <ButtonSecondary onClick={onCancel}>Cancelar</ButtonSecondary>
 
           {error && <p style={{ color: "red" }}>Error: {error.message}</p>}
+          {errors && <p style={{ color: "red" }}>Error: {errors}</p>}
         </form>
       </div>
     </section>

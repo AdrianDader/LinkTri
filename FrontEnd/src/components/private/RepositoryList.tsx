@@ -4,6 +4,7 @@ import AuthContext from "../../context/AuthContext"; // 👈 usamos el contexto,
 import "./Accordion.css";
 import { RepositoryListProps } from "./typesList";
 import useIsMobile from "../../hooks/useMobile";
+import { useMemo } from "react";
 
 export interface EnlaceData {
   id: number;
@@ -27,10 +28,6 @@ export default function RepositoryList({
 }: RepositoryListProps & { setSelectedRepoId: (id: number) => void }) {
   const { accessToken } = useContext<any>(AuthContext); // ✅ correctamente accedido
 
-  // const [repository, setRepository] = useState<RepositoriesResponse>({
-  //   repositories: {},
-  // });
-
   const { data, loading, error, fetchData } = useFetchingDataGetRepository(
     "http://localhost:8000/api/repository-content",
     accessToken
@@ -43,9 +40,11 @@ export default function RepositoryList({
 
     fetchData().then((res) => {
       if (res) setRepository(res);
-      console.log(res);
     });
   }, [accessToken]);
+  const memoizedEntries = useMemo(() => {
+    return Object.entries(repository.repositories || {});
+  }, [repository.repositories]);
 
   if (loading) return <p>Cargando repositorios...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -63,89 +62,87 @@ export default function RepositoryList({
         rel="stylesheet"
       />
 
-      {Object.entries(repository.repositories).map(
-        ([category, data], index) => {
-          const isOpen = openIndex === index;
-          const { repository: repoData, enlaces } = data;
+      {memoizedEntries.map(([category, data], index) => {
+        const isOpen = openIndex === index;
+        const { repository: repoData, enlaces } = data;
 
-          return (
-            <div key={category}>
-              <div
-                onClick={() => {
-                  setOpenIndex(isOpen ? null : index); // ya existente
-                  setSelectedRepoDesc(repoData.description); // movido desde <a>
-                  setSelectedTags(repoData.tags);
-                  setSelectedRepoName(category);
-                  setSelectedRepoId(repoData.id); // 👈 asigna el ID
-                }}
+        return (
+          <div key={category}>
+            <div
+              onClick={() => {
+                setOpenIndex(isOpen ? null : index); // ya existente
+                setSelectedRepoDesc(repoData.description); // movido desde <a>
+                setSelectedTags(repoData.tags);
+                setSelectedRepoName(category);
+                setSelectedRepoId(repoData.id); // 👈 asigna el ID
+              }}
+              style={{
+                cursor: "pointer",
+                userSelect: "none",
+              }}
+              className="accordion-header"
+            >
+              {category}
+
+              <span
+                className="material-symbols-outlined"
                 style={{
-                  cursor: "pointer",
-                  userSelect: "none",
+                  display: "inline-block",
+                  transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
+                  transition: "transform 0.2s ease",
                 }}
-                className="accordion-header"
               >
-                {category}
-
-                <span
-                  className="material-symbols-outlined"
-                  style={{
-                    display: "inline-block",
-                    transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-                    transition: "transform 0.2s ease",
-                  }}
-                >
-                  chevron_forward
-                </span>
-              </div>
-              {isOpen && (
-                <div className="accordion-desc" style={{ paddingLeft: 20 }}>
-                  <ul style={{ listStyle: "none", paddingLeft: "1rem" }}>
-                    {enlaces.map((enlace) => (
-                      <li key={enlace.id} style={{ marginBottom: ".5rem" }}>
-                        <div
-                          style={{
-                            display: "flex",
-                            gap: ".5rem",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            maxWidth: isMobile ? "20px" : "200px",
-                          }}
-                          onClick={() => {
-                            setSelectedRepoId(repoData.id); // ← Ya lo haces
-                            setSelectedEnlace({
-                              id: enlace.id,
-                              url: enlace.url,
-                              name: enlace.name,
-                              visibility: enlace.visibility,
-                              shared: enlace.shared,
-                            });
-                            setSelectedLinkName(enlace.name); // si lo necesitas
-                            setSelectedRepoName(category);
-                            setSelectedRepoDesc(repoData.description);
-                            setSelectedTags(repoData.tags);
-                          }}
-                        >
-                          {enlace.visibility === "private" ? (
-                            <span className="material-symbols-outlined ">
-                              lock
-                            </span>
-                          ) : (
-                            <span className="material-symbols-outlined">
-                              visibility
-                            </span>
-                          )}{" "}
-                          {enlace.name}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                chevron_forward
+              </span>
             </div>
-          );
-        }
-      )}
+            {isOpen && (
+              <div className="accordion-desc" style={{ paddingLeft: 20 }}>
+                <ul style={{ listStyle: "none", paddingLeft: "1rem" }}>
+                  {enlaces.map((enlace) => (
+                    <li key={enlace.id} style={{ marginBottom: ".5rem" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: ".5rem",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          maxWidth: "200px",
+                        }}
+                        onClick={() => {
+                          setSelectedRepoId(repoData.id); // ← Ya lo haces
+                          setSelectedEnlace({
+                            id: enlace.id,
+                            url: enlace.url,
+                            name: enlace.name,
+                            visibility: enlace.visibility,
+                            shared: enlace.shared,
+                          });
+                          setSelectedLinkName(enlace.name); // si lo necesitas
+                          setSelectedRepoName(category);
+                          setSelectedRepoDesc(repoData.description);
+                          setSelectedTags(repoData.tags);
+                        }}
+                      >
+                        {enlace.visibility === "private" ? (
+                          <span className="material-symbols-outlined ">
+                            lock
+                          </span>
+                        ) : (
+                          <span className="material-symbols-outlined">
+                            visibility
+                          </span>
+                        )}{" "}
+                        {enlace.name}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

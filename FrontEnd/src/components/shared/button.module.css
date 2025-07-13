@@ -54,3 +54,10 @@
   transform: scale(var(--btn-scale-active));
   background-color: #1f1f1f;
 }
+
+.buttonSecondary:disabled {
+  background-color: #cccccc; /* color gris claro */
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+

@@ -18,7 +18,11 @@
   align-items: center;
   margin-bottom: 10rem;
 }
+.profile__title {
 
+  margin:0;
+  padding-top: 1rem;
+}
 .profile__img {
     width: 11rem;
     object-fit: cover;

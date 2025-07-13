@@ -134,7 +134,7 @@ export default function RegisterForm() {
                   name="name"
                   value={form.name}
                   onChange={handleChange}
-                  maxLength={20}
+                  maxLength={35}
                 />
               </div>
               <div className="form-label__wrapper">
@@ -186,7 +186,7 @@ export default function RegisterForm() {
                   }
                 />
               </div>
-              <ButtonPrimary style={{marginTop: '.5rem'}}onClick="submit" disabled={errors ? true : false}>
+              <ButtonPrimary style={{marginTop: '.5rem'}} disabled={errors ? true : false}>
                 Registrarse
               </ButtonPrimary>
 
