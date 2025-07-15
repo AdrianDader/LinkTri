@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, expect, it  } from "vitest";
 import Accordion from "./../Accordion";
 
 describe("Componente accordion", () => {
