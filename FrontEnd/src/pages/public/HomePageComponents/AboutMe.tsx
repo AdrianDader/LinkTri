@@ -1,16 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import {
-  ButtonPrimary,
-  ButtonSecondary,
-} from "../../../components/shared/button";
-
+import {ButtonPrimary} from "../../../components/shared/button";
 export default function AboutMe() {
-  // const navigate = useNavigate();
 
   return (
     <section id="aboutme" className="about-me__section">
       <div className="about-me__wrapper max-width">
-        <div className="about-me__box">Lottie siluet</div>
+        <div className="about-me__box">
+          <img className="about-me__img" src="./../../../../public/autor.svg" alt="autor" width="80%"/>
+          dddddddd
+          </div>
         <div className="about-me__box">
           <h3 className="about-me__title">Adrian Dader Laguna</h3>
           <p className="about-me__desc">

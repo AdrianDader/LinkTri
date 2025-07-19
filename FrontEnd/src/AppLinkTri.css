@@ -155,6 +155,7 @@
     height: auto;
     padding: 2rem;
     justify-items: flex-start;
+    gap: 0;
   }
 }
 
@@ -189,7 +190,15 @@
 }
 
 .footer__icons {
+  position: relative;
+  left: 0;
   color: var(--text-green);
+
+  @media (max-width: 768px) {
+
+    left: -.8rem;
+
+  }
 }
 
 /**--------------------Loader --------------------------------*/
