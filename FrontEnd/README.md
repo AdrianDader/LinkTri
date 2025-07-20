@@ -1,12 +1,40 @@
-# React + Vite
+# Guía de usurio de Linktri
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. Landing Page
+![Landing page](./src/assets/img_readme/landing.png)
 
-Currently, two official plugins are available:
+Al acceder por primera vez a **Linktri**, verás una guía sencilla sobre cómo utilizar la aplicación.  
+Este espacio introductorio te explica de forma clara el funcionamiento básico de la plataforma.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Temática de los repositorios**: Puedes crear repositorios sobre una gran variedad de temas.
+- **Etiquetas**: La aplicación permite una clasificación precisa gracias a un amplio sistema de etiquetas que puedes asignar libremente.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 2. Registro / Inicio de sesión
+![loginregister](./src/assets/img_readme/login-register.png)
+
+En la sección de **Register / Login**, puedes crear tu cuenta de usuario con una contraseña segura.
+
+- Una vez creada la cuenta, el sistema te inicia sesión automáticamente.
+- Serás redirigido directamente al **Dashboard**.
+
+---
+
+## 3. Dashboard
+![Dashboard](./src/assets/img_readme/dashboard.png)
+
+El **Dashboard** es el centro de operaciones donde gestionarás tus repositorios y enlaces.
+
+### Características principales:
+
+- Al ingresar por primera vez, solo estará activo el botón ➕ **"Crear Repositorio"**.
+- Para crear un repositorio, debes asignar **al menos una etiqueta**.
+- Una vez creado el primer repositorio, se habilita la opción para **crear enlaces** en el espacio central de la interfaz.
+- Los enlaces deben contener **una URL válida**.
+- En la parte **derecha** del Dashboard se encuentra el **panel de detalles**, donde puedes ver y editar la información del repositorio o enlace seleccionado.
+- Si necesitas borrar un repositorio entero, puedes hacer sin problema. Todos los enlaces al que pertenecen, serán eliminados de la base de datos.
+
+---
+
+¡Listo! Ya puedes comenzar a gestionar tus repositorios temáticos y compartir tus enlaces de forma organizada con **Linktri**.
