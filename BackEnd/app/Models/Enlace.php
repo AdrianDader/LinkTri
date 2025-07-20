@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Enlace extends Model
 {
     use HasFactory;
+
     protected $connection = 'mysql';
 
-
     protected $fillable = [
-        
+        'repository_id',
         'url',
         'name',
         'visibility',
@@ -25,10 +25,9 @@ class Enlace extends Model
         'shared' => 'boolean',
     ];
 
-    // Relaciones
-
     public function repository()
     {
         return $this->belongsTo(Repository::class);
     }
 }
+

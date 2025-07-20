@@ -10,25 +10,25 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
+    
     {
-        {
-            Schema::connection('mysql')->create('enlaces', function (Blueprint $table) {
-                $table->id();
-                $table->foreignId('repository_id')->constrained()->onDelete('cascade');
-    
-                $table->text('url');
-                $table->string('name');
-    
-                $table->enum('visibility', ['public', 'private'])->default('private');
-                $table->boolean('shared')->default(false);
-    
-                $table->text('public_link')->nullable();
-                $table->text('private_link')->nullable();
-    
-                $table->timestamps();
-            });
-        }
+        Schema::connection('mysql')->create('enlaces', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('repository_id')->constrained()->onDelete('cascade');
+
+            $table->text('url');
+            $table->string('name');
+
+            $table->enum('visibility', ['public', 'private'])->default('private');
+            $table->boolean('shared')->default(false);
+
+            $table->text('public_link')->nullable();
+            $table->text('private_link')->nullable();
+
+            $table->timestamps();
+        });
     }
+
 
     /**
      * Reverse the migrations.

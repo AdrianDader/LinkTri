@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+         "test-and-seed": "php artisan test && php artisan db:seed --class=TagSeeder"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
