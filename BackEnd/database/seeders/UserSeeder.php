@@ -21,8 +21,5 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10), 
             ]);
         }
-
-        // Crear usuarios normales (por ejemplo, 10 usuarios)
-        User::factory(10)->create();
     }
 }

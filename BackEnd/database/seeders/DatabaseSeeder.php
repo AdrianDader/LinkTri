@@ -20,23 +20,5 @@ class DatabaseSeeder extends Seeder
         // Llamamos al seeder de tags
         $this->call(FixedDataSeeder::class);
 
-
-        // Llamamos al seeder de repositorio
-        $this->call(RepositorySeeder::class);
-
-
-        // Llamamos al seeder de enlaces
-        $this->call(EnlaceSeeder::class);
-
-
-
-         // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-
     }
 }
