@@ -1,10 +1,8 @@
 const socialUrls = [
-  "https://tiktok.com/@yourusername",
-  "https://twitter.com/yourusername",
-  "https://instagram.com/yourusername",
-  "https://linkedin.com/in/yourusername",
-  "https://github.com/yourusername",
-  "mailto:youremail@example.com",
+  "https://instagram.com/adriandader/",
+  "https://linkedin.com/in/adriandader/",
+  "https://github.com/AdrianDader",
+  "mailto:adriandader@gmail.com",
 ];
 
 export default socialUrls;

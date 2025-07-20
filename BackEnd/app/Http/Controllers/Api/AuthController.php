@@ -13,6 +13,8 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        
+
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -23,6 +25,8 @@ class AuthController extends Controller
                 'message' => 'Credenciales incorrectas.',
             ], 401);
         }
+        $user = Auth::user();
+        $user->tokens()->delete();
 
         // ⚠️ CAMBIADO: usamos Auth::user() en lugar de $request->user()
         $user = Auth::user();
@@ -56,7 +60,7 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
             'role' => 'user', // valor user por defecto
         ]);
-
+        $user->tokens()->delete();
         $token = $user->createToken('auth_token')->plainTextToken;
 
         // Devolver respuesta
@@ -72,4 +76,18 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ], 201);
     }
+
+    public function logout(Request $request)
+{
+    // Elimina el token que usó el usuario para hacer esta petición (logout solo de ese token)
+    $request->user()->currentAccessToken()->delete();
+
+    // O si quieres eliminar **todos** los tokens del usuario, usar:
+    // $request->user()->tokens()->delete();
+
+    return response()->json([
+        'message' => 'Sesión cerrada correctamente.'
+    ]);
+}
+
 }

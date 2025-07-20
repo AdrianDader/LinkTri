@@ -4,6 +4,8 @@ import { SocialIcon } from "react-social-icons";
 import socialUrls from "./FooterSocialIcons";
 
 export default function Footer() {
+  const data = new Date();
+  const year = data.getFullYear();
   function SocialIcons() {
     const allUrls = socialUrls.map((url: string, index: number) => (
       <div className={"footer__icons"} key={index} >
@@ -35,13 +37,7 @@ export default function Footer() {
           <ul className="footer-icons__list">
             {SocialIcons()}
             <li>
-              <Link to="/dashboard">Link 1</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Link 2</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Link 3</Link>
+              <a href="https://www.ebiseducation.com/" target="_blank" rel="noopener noreferrer">Ebis Education {year}</a>
             </li>
           </ul>
         </div>

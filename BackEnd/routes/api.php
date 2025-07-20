@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
         ]);
     });
     Route::get('/repository-content', [RepositoryController::class, 'repositoryContent'])->middleware('auth:sanctum');
+    Route::post('/logout', [AuthController::class, 'logout']);
 
 });
 

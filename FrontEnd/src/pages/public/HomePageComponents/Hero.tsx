@@ -16,7 +16,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="hero__background">
+      <section className="hero__background" id="home">
         <section className="hero__section max-width">
           <div className="hero__wrapper">
             <h1>

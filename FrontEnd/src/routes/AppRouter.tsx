@@ -12,8 +12,6 @@ export default function AppRouter() {
 
   return (
     <>
-      {/* Detecta enlaces dentro de la misma página para hacer scroll-smooth */}
-      {/* <ScrollToHash />  */}
       <Routes>
         {/* PUBLIC ROUTES */}
         <Route path="/" element={<HomePage />} />

@@ -33,7 +33,7 @@ export default function NavBar() {
 
   return (
     <>
-    <section id="home" className={!changeClassNavBar ? "navbar__section" : "navbar-dashboard__section"}>
+    <section className={!changeClassNavBar ? "navbar__section" : "navbar-dashboard__section"}>
       <div className="navbar__wrapper max-width">
         <nav className="navbar__list">
           <NavLink
