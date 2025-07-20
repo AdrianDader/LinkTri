@@ -23,18 +23,20 @@ Proyecto full-stack inspirado en Linktree, desarrollado con **React (frontend)**
 git clone https://github.com/AdrianDader/LinkTri.git
 
 # Frontend
+cd linktri
 cd frontend
 npm install
 npm run dev
 
 # Backend
+cd linktri
 cd backend
 composer install
 cp .env.example .env
 php artisan key:generate
 
 ```
-3. Configura el archivo `.env`: path: `BackEnd\.env`
+3. Configura el archivo `.env`: path: `BackEnd\.env`. Aqui dejo unos datos de ejemplo:
 
 ```env
 DB_CONNECTION=mysql
@@ -50,6 +52,14 @@ DB_PASSWORD=
 php artisan migrate          # ejecuta las migraciones
 php artisan db:seed          # cargar datos de prueba
 php artisan serve
+
+```
+4. Aparecerá el siguiente mensaje y le decimos que sí. cambia 'linktri_backend' por el nombre de tu DB en `BackEnd\.env`.
+
+```bash
+
+WARN  The database 'linktri_backend' does not exist on the 'mysql' connection.
+Would you like to create it? (yes/no) [yes]
 
 ```
 ---
@@ -79,6 +89,7 @@ Listado de paquetes esenciales utilizados en el cliente:
 | react-social-icons                 | 6.24.0   |
 | react                              | 19.1.0   |
 | vite                               | 6.3.5    |
+| vitest                             | 3.2.4    |
 
 ---
 
@@ -90,20 +101,30 @@ Dependencias instaladas con Composer. Solo se listan paquetes externos (sin incl
 
 Ejemplo de algunas librerías:
 
-| Paquete                             | Versión   | Descripción breve |
-|-------------------------------------|-----------|--------------------|
-| laravel/framework                   | 11.44.7   | Framework principal de Laravel |
-| guzzlehttp/guzzle                   | 7.9.3     | Cliente HTTP |
-| mongodb/laravel-mongodb             | 5.4.1     | Soporte MongoDB para Eloquent |
-| fruitcake/php-cors                  | 1.3.0     | Middleware CORS |
-| pestphp/pest                        | 3.8.2     | Framework de pruebas |
-| symfony/console                     | 7.2.5     | Comandos CLI Symfony |
-| league/flysystem                    | 3.29.1    | Abstracción del sistema de archivos |
-| vlucas/phpdotenv                    | 5.6.1     | Carga de variables de entorno |
-| fakerphp/faker                      | 1.24.1    | Generador de datos falsos |
-| nunomaduro/collision                | 8.8.0     | Manejo elegante de errores CLI |
-| laravel/sanctum                     | 4.1.0     | Autenticación API ligera |
-| laravel/breeze                      | 2.3.6     | Scaffolding de auth con Blade |
+| Paquete                             | Versión   | Descripción breve                                      |
+|-------------------------------------|-----------|--------------------------------------------------------|
+| laravel/framework                   | 11.44.7   | Framework principal de Laravel                         |
+| guzzlehttp/guzzle                   | 7.9.3     | Cliente HTTP para hacer solicitudes a servicios web    |
+| mongodb/laravel-mongodb             | 5.4.1     | Extensión Eloquent para trabajar con MongoDB en Laravel|
+| mongodb/mongodb                     | 2.0.0     | Driver oficial de MongoDB para PHP                     |
+| fakerphp/faker                      | 1.24.1    | Generador de datos falsos para pruebas y desarrollo    |
+| phpunit/phpunit                     | 11.5.15   | Framework de pruebas para PHP                          |
+| pestphp/pest                        | 3.8.2     | Framework elegante para pruebas en PHP                 |
+| mockery/mockery                     | 1.6.12    | Framework para crear mocks en pruebas                  |
+| laravel/sanctum                     | 4.1.0     | Autenticación ligera para SPAs y APIs                  |
+| laravel/breeze                      | 2.3.6     | Scaffolding simple de autenticación con Blade          |
+| laravel/tinker                      | 2.10.1    | REPL interactivo para Laravel                          |
+| laravel/sail                        | 1.41.1    | Entorno Docker ligero para desarrollo con Laravel      |
+| laravel/pint                        | 1.22.0    | Formateador de código opinado para PHP                 |
+| fruitcake/php-cors                  | 1.3.0     | Soporte CORS para aplicaciones Laravel                 |
+| filp/whoops                         | 2.18.0    | Manejo de errores visual para desarrollo               |
+| nunomaduro/collision                | 8.8.0     | Errores amigables en consola para Laravel              |
+| nesbot/carbon                       | 3.9.0     | Manipulación de fechas basada en DateTime             |
+| league/flysystem                    | 3.29.1    | Abstracción de sistema de archivos                     |
+| symfony/http-foundation             | 7.2.5     | Capa orientada a objetos para manejar solicitudes HTTP |
+| psr/log                             | 3.0.2     | Interfaz estándar de logging para PHP                  |
+| graham-campbell/result-type         | 1.1.3     | Tipo Result para operaciones que pueden fallar         |
+
 
 > 📄 Ver la lista completa en el archivo `composer.lock` o usando `composer show`.
 
