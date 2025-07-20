@@ -1,5 +1,5 @@
 # ⛓️‍💥 LinkTri
-
+#### Para conocer la aplicación, puedes consultar la [guía de usuario.](./FrontEnd/README.md)
 Una plataforma para gestionar y compartir múltiples enlaces de forma organizada, con categorías, visibilidad personalizada y funciones colaborativas.
 
 Proyecto full-stack inspirado en Linktree, desarrollado con **React (frontend)** y **Laravel (backend)**, que permite a los usuarios gestionar enlaces, personalizar sus perfiles y compartir contenido fácilmente.
