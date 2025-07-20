@@ -10,8 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+
     public function login(Request $request)
     {
+        
+
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -22,26 +25,23 @@ class AuthController extends Controller
                 'message' => 'Credenciales incorrectas.',
             ], 401);
         }
+        $user = Auth::user();
+        $user->tokens()->delete();
 
-        $user = $request->user();
+        // ⚠️ CAMBIADO: usamos Auth::user() en lugar de $request->user()
+        $user = Auth::user();
 
         $token = $user->createToken('API Token')->plainTextToken;
 
+        // ✅ Estructura uniforme con REGISTER
         return response()->json([
             'message' => "Usuario {$user->name} logeado correctamente.",
-            'api_access' => url('/api/repository'),
-            'payload_example_newRepository' => [
-                'name' => '',
-                'description' => '',
-                'visibility' => 'private | public',
-                'shared' => 'true | false', 
-                'tags' => ['Tag1', 'Tag2', '...']
-            ],
+            'user' => $user->only(['id', 'name', 'email', 'role', 'created_at', 'updated_at']),
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
-        
     }
+
 
 
     public function register(Request $request)
@@ -57,10 +57,10 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']), 
+            'password' => Hash::make($validated['password']),
             'role' => 'user', // valor user por defecto
         ]);
-
+        $user->tokens()->delete();
         $token = $user->createToken('auth_token')->plainTextToken;
 
         // Devolver respuesta
@@ -77,17 +77,17 @@ class AuthController extends Controller
         ], 201);
     }
 
+    public function logout(Request $request)
+{
+    // Elimina el token que usó el usuario para hacer esta petición (logout solo de ese token)
+    $request->user()->currentAccessToken()->delete();
 
+    // O si quieres eliminar **todos** los tokens del usuario, usar:
+    // $request->user()->tokens()->delete();
 
-
-
-
-
-
-
-
-
-
-
+    return response()->json([
+        'message' => 'Sesión cerrada correctamente.'
+    ]);
+}
 
 }

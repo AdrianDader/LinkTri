@@ -1,16 +1,17 @@
 // import "./App.css";
-import "./AppLinkTri.css"
-import NavBar from "./components/shared/NavBar";
+import "./AppLinkTri.css";
 import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./routes/AppRouter";
+import { AuthProvider } from "./context/AuthProvider";
+import AppContent from "./AppContent";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-      <NavBar />
-      <AppRouter />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      </AuthProvider>
     </>
   );
 }

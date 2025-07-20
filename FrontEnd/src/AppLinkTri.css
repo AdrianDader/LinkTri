@@ -1,30 +1,233 @@
-#root {
+:root {
+  /*Colores primarios*/
+
+  --text-white: #fff8e5;
+  --text-green: #7ba844;
+  --text-green-active: #557d24;
+  --background-grey: #363636;
+  --background-footer-grey: #1e1e1e;
+
+  /* Tamaño de fuente */
+
+  --font-size-h1: 3rem;
+  --font-size-h3: 2rem;
+
+  /* Animación de botones*/
+
+  --btn-scale-hover: 0.95;
+  --btn-scale-active: 0.97;
+}
+
+
+.max-width {
   max-width: 80rem;
   margin: 0 auto;
 
-  /* text-align: center; */
+  /* @media (max-width: 1024px) {
+
+    max-width: 40rem;
+
+  } */
+
+  @media (max-width: 768px) {
+
+    max-width: 30rem;
+
+  }
+
 }
 
-/* NavBar */
-
-.navbar__logo{
-
-    font-size: 1.6rem;
-    font-weight: 800;
-
+.height-calc-100vh {
+  height: calc(100vh - 5.3rem);
 }
+
+/**---------------------- NavBar --------------------------------  */
+
+.navbar__logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.navbar__section{
+  position: sticky;
+  top: 0;              
+  z-index: 1000;
+  background-color: var(--text-white);
+
+  /* -webkit-box-shadow: -1px 1px 35px -3px #7ba84465; */
+}
+
+.navbar-dashboard__section{
+  position: sticky;
+  top: 0;              
+  z-index: 1000;
+  background-color: var(--text-green);
+
+  /* -webkit-box-shadow: -1px 1px 35px -3px #7ba84465; */
+}
+
+.navbar-dashboard__section nav > * {
+  color: var(--background-footer-grey);
+
+  /* -webkit-box-shadow: -1px 1px 35px -3px #7ba84465; */
+}
+
+
 .navbar__wrapper {
-    /* background-color: #c8b5da; */
-    padding: 1rem 0;
-    display: flex;
-    justify-content: space-between
+
+  
+    
+  
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  
 }
 
 .navbar__list {
-    font-size: 1.1rem;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 2rem;
-    
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 2rem;
+}
+.active {
+  color: var(--text-green);
+}
+/**------------------- NavBar Ham --------------------------- */
+
+.navbar-ham {
+  background: var(--text-white);
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.navbar-ham__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.hamburger-button {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger-menu {
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--background-footer-grey);
+  padding: 2rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width:-webkit-fill-available;
+  box-shadow: 0 4px 6px #0000001a;
+  z-index: 99;
+}
+
+.hamburger-menu > a {
+    color: var(--text-white)
+}
+
+/**------------------------- footer ---------------------------------- */
+
+.footer__section {
+  background-color: var(--background-footer-grey);
+}
+
+.footer__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 4rem 2rem;
+  justify-items: end;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    height: auto;
+    padding: 2rem;
+    justify-items: flex-start;
+    gap: 0;
+  }
+}
+
+.footer__title {
+  font-size: var(--font-size-h3);
+  margin: 0;
+  color: var(--text-green);
+}
+
+.footer__box {
+  color: var(--text-white);
+}
+
+.footer-icons__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin: 0;
+
+  @media (max-width: 768px) {
+
+    justify-items: flex-start;
+    align-items: flex-start;
+
+  }
+}
+
+.footer__desc:last-child {
+  color: var(--text-green);
+}
+
+.footer__icons {
+  position: relative;
+  left: 0;
+  color: var(--text-green);
+
+  @media (max-width: 768px) {
+
+    left: -.8rem;
+
+  }
+}
+
+/**--------------------Loader --------------------------------*/
+
+.loader__section {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh);
+  top: 0;
+  background-color: var(--text-white);
+  /* backdrop-filter: blur(8px); */
+  z-index: 9999;
+}
+
+.loader__wrapper {
+  text-align: center;
+  color: red;
+  max-width: 40rem;
+  /* border: solid 1px var(--text-green); */
+  border-radius: .5rem;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  top: 17rem;
+
+  @media (max-width: 768px) {
+
+   margin: 2rem;
+   padding:1rem;
+   top: 15rem;
+  }
 }

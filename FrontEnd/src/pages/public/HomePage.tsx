@@ -1,19 +1,19 @@
 import "./HomePage.css";
+import AboutMe from "./HomePageComponents/AboutMe";
 import Hero from "./HomePageComponents/Hero";
+import HowItWorks from "./HomePageComponents/HowItWorks";
+import WhatIs from "./HomePageComponents/WhatIs";
+
+
 export default function HomePage() {
   return (
     <>
-      {/* <h1>HomePage</h1> */}
-      <section className="background"></section>
       <Hero />
-      <section className="height-viewport">aaaaaaa</section>
+      <WhatIs />
+      <HowItWorks />
+      <AboutMe />
     </>
   );
 }
 
-{
-  /* <section id="whatis">
-  <h2>What is it?</h2>
-  <p>Explicación aquí...</p>
-</section> */
-}
+

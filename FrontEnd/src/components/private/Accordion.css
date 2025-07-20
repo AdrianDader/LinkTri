@@ -1,0 +1,28 @@
+.accordion-header {
+      /* margin: 0.5rem 0; */
+    color: var(--text-green);
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    transition: background-color 0.3s;
+    user-select: none;
+    border-radius: 4px;
+}
+
+
+
+.accordion-header:hover {
+  background-color: #00000010; /* hover solo en header, no en todo el contenedor */
+}
+
+.accordion-icon {
+  color: var(--text-green);
+}
+
+.accordion-desc {
+    margin-left: -1rem;
+}

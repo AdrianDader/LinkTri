@@ -1,0 +1,42 @@
+.fullscreen-section {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+}
+
+/* Fondos definidos por clases */
+
+.background1 .background {
+  background-color: blueviolet;
+}
+
+.background2 .background {
+  background-image: url("./assets/otro_fondo.svg");
+}
+
+.content {
+  position: relative;
+  height: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  z-index: 1;
+  color: white;
+}

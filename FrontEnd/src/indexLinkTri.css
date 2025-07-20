@@ -1,16 +1,21 @@
 :root {
-  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
   text-align: justify;
 
   color: #363636;
-  background-color: #FFF8E5; 
+  background-color: #fff8e5;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -21,7 +26,50 @@ a {
   font-weight: 500;
   color: #363636;
   text-decoration: inherit;
+  transition: transform 0.2s ease;
 }
 a:hover {
-  color: #66A21B;
+   transform: scale(1.05);
+   color: var(--text-green);
+  
+}
+
+a:active {
+  transform: scale(0.97);
+  color: var(--text-green-active);
+
+}
+
+input, textarea, select {
+  border: solid 1px var(--text-green);
+  background-color: var(--text-white);
+  border-radius: 0.3rem;
+  padding: 0.5rem 0.5rem;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: var(--text-green);
+}
+
+
+.custom-scroll {
+
+  padding-right: 12px; /* espacio entre contenido y scrollbar */
+
+  @media (max-width: 768px) {
+   padding-right: 0;
+  }
+}
+
+
+.custom-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #00000000;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color:var(--text-green);
+  border-radius: 10px;
 }

@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Almacena",
+    "description": "Almacena se refiere al acto de guardar y conservar información, objetos o datos de forma ordenada y segura para su uso posterior."
+  },
+  {
+    "id": 2,
+    "name": "Clasifica",
+    "description": "Clasifica implica organizar elementos en categorías o grupos según sus características comunes. Esta acción facilita la identificación"
+  },
+  {
+    "id": 3,
+    "name": "Comparte",
+    "description": "Comparte hace referencia a la acción de distribuir o poner a disposición de otros personas información, recursos o experiencias."
+  }
+]

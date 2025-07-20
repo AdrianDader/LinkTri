@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         // Llamamos al seeder de usuarios
         $this->call(UserSeeder::class);
 
-        // DB MongoDB
-        $this->call(TagSeeder::class);
+        // Llamamos al seeder de tags
+        $this->call(FixedDataSeeder::class);
 
 
         // Llamamos al seeder de repositorio

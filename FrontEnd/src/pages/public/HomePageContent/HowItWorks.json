@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Regístrate y crea tu cuenta",
+    "description": "Lo primero que debes hacer es ingresar a la web de LinkTri y registrarte. El proceso de registro suele ser sencillo: puedes usar tu correo electrónico o vincular alguna red social, según las opciones que ofrezca la plataforma. Una vez registrado, tendrás acceso a un panel personal donde podrás gestionar todos tus enlaces y repositorios. Este paso es importante porque con tu cuenta personal podrás guardar toda tu información de forma segura, acceder a ella desde cualquier dispositivo y personalizar tu experiencia dentro de la plataforma. Además, tener una cuenta te permite compartir tus enlaces de manera organizada y profesional.",
+    "svgImage": "https://lottie.host/f9953e5b-586d-4d26-9212-33a2fc4bd9dd/Osame8yxY1.lottie"
+  },
+  {
+    "id": 2,
+    "name": "¡Crea tu primer repositorio!",
+    "description": "Una vez dentro, puedes comenzar a crear repositorios, que funcionan como carpetas virtuales. Cada repositorio te permite agrupar enlaces relacionados entre sí, lo que te ayuda a mantener todo ordenado. Por ejemplo, puedes tener un repositorio para enlaces de trabajo, otro para recursos académicos, y otro para ocio o redes sociales. Además, cada repositorio se puede etiquetar por categorías, lo que facilita aún más la organización y búsqueda de información. Esta estructura te permite tener una biblioteca de enlaces personalizada, clara y fácil de consultar, incluso si tienes muchos guardados.",
+    "svgImage": "https://lottie.host/a21196d2-140b-497c-9c7f-bb6898b68784/Kdd1FR2FuO.lottie"
+  },
+  {
+    "id": 3,
+    "name": "Guarda y comparte",
+    "description": "Dentro de cada repositorio puedes guardar todos los enlaces que quieras. Simplemente copias y pegas la URL, puedes añadirle un título o una descripción, y se guarda automáticamente en la carpeta correspondiente. Esto convierte a LinkTri en una herramienta muy útil para recopilar recursos, ideas o sitios web importantes. Además, puedes generar un enlace único o un código QR para compartir cada repositorio. Esto es ideal si quieres enviar tus referencias a alguien más, compartirlas en redes sociales, o incluso imprimir el QR para que otros lo escaneen. Así, toda la información está centralizada y accesible desde un solo lugar, sin necesidad de enviar muchos links por separado.",
+    "svgImage": "https://lottie.host/98b97263-f69b-41f9-9fc0-bc85b96a4ad3/iZd25Fj6cB.lottie"
+  }
+]

@@ -1,16 +1,23 @@
+// ButtonPrimary.tsx
 import styles from "./button.module.css";
 
-export function ButtonPrimary({ children, onClick }) {
+export function ButtonPrimary({ children, ...props }) {
   return (
-    <button className={styles.buttonPrimary} onClick={onClick}>
+    <button
+      className={styles.buttonPrimary}
+      {...props} 
+    >
       {children}
     </button>
   );
 }
 
-export function ButtonSecondary({ children, onClick }) {
+export function ButtonSecondary({ children, ...props }) {
   return (
-    <button className={styles.buttonSecondary} onClick={onClick}>
+    <button
+      className={styles.buttonSecondary}
+      {...props}
+    >
       {children}
     </button>
   );

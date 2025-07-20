@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Enlace;
 use App\Models\Repository;
 use Illuminate\Http\Request;
 use App\Models\Tag;
@@ -122,4 +123,39 @@ class RepositoryController extends Controller
 
         return response()->json(['message' => 'Repositorio actualizado correctamente.'], 200);
     }
+
+    // NUEVOS ENDPOINTS
+
+public function repositoryContent(Request $request)
+{
+    $userId = $request->user()->id;
+
+    // Eager loading de 'enlaces'
+    $repositories = Repository::with('enlaces')
+                    ->where('user_id', $userId)
+                    ->get();
+
+    $result = [];
+
+    foreach ($repositories as $repo) {
+        // Obtener los enlaces
+        $enlaces = $repo->enlaces->toArray();
+
+        // Convertir el modelo Repository en array y quitar 'enlaces' si viene incluido
+        $repoData = $repo->toArray();
+        unset($repoData['enlaces']);
+
+        $result[$repo->name] = [
+            'repository' => $repoData,
+            'enlaces' => $enlaces
+        ];
+    }
+
+    return response()->json([
+        'repositories' => $result,
+    ]);
+}
+
+
+
 }

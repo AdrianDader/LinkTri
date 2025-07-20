@@ -1,0 +1,31 @@
+.not-found__section {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  margin: 0;
+  height: calc(100vh - 4.3994rem);
+  background-image: url("./../../assets/vector_arboles2.svg");
+  /* background-size: cover; */
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+.not-found__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10rem;
+}
+
+.not-found__wrapper > h1, p {
+  margin: 0;
+}
+
+.not-found__title {
+    font-size: 10rem;
+    color: var(--text-green);
+}
+
+.not-found__desc {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
