@@ -208,6 +208,7 @@
   position: relative;
 
   background-color: var(--background-grey);
+  background-color: var(--background-grey);
 }
 
 .about-me__wrapper {
